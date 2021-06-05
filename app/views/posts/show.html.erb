@@ -1,12 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
+<h1>
   <%= @post.title %>
-</p>
+</h1>
+
+<h3>
+  <b>Posted On: </b>
+  <%= @post.created_at %>
+  <b> | </b>
+  <b>Last Updated: </b>
+  <%= @post.updated_at %>
+</h3>
 
 <p>
-  <strong>Content:</strong>
   <%= @post.content %>
 </p>
 
