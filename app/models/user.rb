@@ -11,7 +11,7 @@ class User < ApplicationRecord
     # Hashes the password, using salts, so that it is not stored in plain text
     # This is not the most secure implementation
     def hash_password
-      self.salt = SecureRandom.alphanumeric(10)
+      self.salt = SecureRandom.alphanumeric(16)
       self.password << self.salt
       self.password = Digest::SHA256.hexdigest self.password
     end
