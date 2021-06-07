@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
       redirect_to :root, notice: "You have successfully signed in."
     else
       # Create an error message.
+      flash.now[:alert] = "The username or password is incorrect."
       render 'new'
     end
   end
