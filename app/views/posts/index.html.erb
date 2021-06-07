@@ -4,9 +4,10 @@
   <thead>
     <tr>
       <th>Title</th>
+      <th>OP</th>
       <th>Posted On</th>
       <th>Last Updated</th>
-      <th colspan="4"></th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -14,6 +15,7 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= link_to post.title, post %></td>
+        <td><%= link_to post.user.name, post.user %></td>
         <td><%= post.created_at %></td>
         <td><%= post.updated_at %></td>
         <td><%= link_to 'Show', post %></td>

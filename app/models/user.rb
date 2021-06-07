@@ -2,13 +2,15 @@ require 'securerandom'
 require 'digest'
 
 class User < ApplicationRecord
+  has_many :posts, dependent: :destroy
+
   validates :username, format: { with: /\A[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\z/ }, length: { minimum: 3, maximum: 25}, uniqueness: true
   validates :password, confirmation: true, length: { minimum: 8, maximum: 24 }
 
   before_save :hash_password
 
+  # Authenticates the password included with the password of this user
   def authenticate(password)
-    # Authenticates the password included with the password of this user
     password << self.salt
     password = Digest::SHA256.hexdigest password
     if password == self.password
@@ -16,6 +18,11 @@ class User < ApplicationRecord
     else
       return false
     end
+  end
+
+  # Returns the name that should be displayed (For now, just display the username)
+  def name
+     self.username
   end
 
   private
