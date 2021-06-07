@@ -7,6 +7,17 @@ class User < ApplicationRecord
 
   before_save :hash_password
 
+  def authenticate(password)
+    # Authenticates the password included with the password of this user
+    password << self.salt
+    password = Digest::SHA256.hexdigest password
+    if password == self.password
+      return true
+    else
+      return false
+    end
+  end
+
   private
     # Hashes the password, using salts, so that it is not stored in plain text
     # This is not the most secure implementation
