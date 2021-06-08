@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :require_login, except: %i[ index show ]
 
   # GET /posts or /posts.json
   def index
@@ -65,5 +66,12 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:title, :content)
+    end
+
+    def require_login
+      unless signed_in?
+        flash[:alert] = "You must be signed in to do that."
+        redirect_to login_url
+      end
     end
 end
