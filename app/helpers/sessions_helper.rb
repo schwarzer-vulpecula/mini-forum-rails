@@ -5,6 +5,12 @@ module SessionsHelper
     session[:user_id] = user.id
   end
 
+  # Sign out the current user
+  def sign_out
+    @current_user = nil
+    session[:user_id] = nil
+  end
+
   # Saves the user stored in sessions in @current_user, and returns it
   # If @current_user has something, simply return it
   def current_user
