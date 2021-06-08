@@ -20,4 +20,10 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  # Returns true if current user is allowed to modify resources owned by the given user
+  def authorized?(user)
+    # For now, just check for equality
+    current_user == user
+  end
+
 end
