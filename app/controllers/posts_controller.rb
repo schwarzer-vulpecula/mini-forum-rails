@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   skip_before_action :require_login, only: %i[ index show ]
   before_action :set_post, only: %i[ show edit update destroy ]
-  before_action :require_permission, except: %i[ index show ]
+  before_action :require_permission, only: %i[ edit update destroy ]
 
   # GET /posts or /posts.json
   def index
