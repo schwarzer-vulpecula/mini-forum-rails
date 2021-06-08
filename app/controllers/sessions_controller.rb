@@ -39,8 +39,7 @@ class SessionsController < ApplicationController
   private
     def require_not_login
       if signed_in?
-        flash[:alert] = "You are already signed in."
-        redirect_back fallback_location: :root
+        redirect_back fallback_location: :root, alert: "You are already signed in."
       end
     end
 
