@@ -32,8 +32,11 @@ class SessionsController < ApplicationController
 
   # DELETE /logout
   def destroy
-    sign_out
-    redirect_back fallback_location: :root, notice: "You have successfully signed out."
+    # This will ensure that sign outs will not do anything if you are not signed in
+    if signed_in?
+      sign_out
+      redirect_back fallback_location: :root, notice: "You have successfully signed out."
+    end
   end
 
   private
