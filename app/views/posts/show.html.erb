@@ -15,9 +15,12 @@
   <%= @post.updated_at %>
 </h4>
 
-<p>
-  <%= @post.content %>
-</p>
+<div class="post_content">
+<% content_array = @post.content.split("\n") -%>
+<% content_array.each { |x| -%>
+  <p><%= x %></p>
+<% } -%>
+</div>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %> |
