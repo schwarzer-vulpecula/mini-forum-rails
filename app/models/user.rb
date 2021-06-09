@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   validates :username, format: { with: /\A[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\z/ }, length: { minimum: 3, maximum: 25}, uniqueness: true
   validates :password, confirmation: true, length: { minimum: 8, maximum: 24 }
+  validates :display_name, length: { maximum: 30 }, format: { without: /@/ }
 
   before_save :hash_password
 
@@ -20,9 +21,22 @@ class User < ApplicationRecord
     end
   end
 
-  # Returns the name that should be displayed (For now, just display the username)
+  # Returns the name that should be displayed
   def name
-     self.username
+     if display_name.blank?
+       '@' << self.username
+     else
+       self.display_name
+     end
+  end
+
+  # Like above, but it will always include the username
+  def complete_name
+    if display_name.blank?
+      name
+    else
+      return self.display_name + ' (@' + self.username + ')'
+    end
   end
 
   private
