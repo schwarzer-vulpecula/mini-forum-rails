@@ -5,10 +5,10 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
 
   validates :username, format: { with: /\A[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\z/ }, length: { minimum: 3, maximum: 25}, uniqueness: true
-  validates :password, confirmation: true, length: { minimum: 8, maximum: 24 }
+  validates :password, confirmation: true, length: { minimum: 8, maximum: 24 }, if: -> { self.salt.nil? }
   validates :display_name, length: { maximum: 30 }, format: { without: /@/ }
 
-  before_save :hash_password
+  before_save :hash_password, if: -> { self.salt.nil? }
 
   # Authenticates the password included with the password of this user
   def authenticate(password)

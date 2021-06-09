@@ -38,8 +38,17 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
+    updated_params = user_params
+    if updated_params[:password].length == 0
+      # Do not update password; remove it from the hash
+      updated_params.delete(:password)
+      updated_params.delete(:password_confirmation)
+    else
+      # Request to clear the salt so that a new one will be given
+      updated_params[:salt] = nil
+    end
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(updated_params)
         format.html { redirect_to @user, notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
