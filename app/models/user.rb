@@ -26,7 +26,12 @@ class User < ApplicationRecord
      if display_name.blank?
        '@' << self.username
      else
-       self.display_name
+       # Return complete name if display name is not unique, to remove ambiguity
+       if User.where(display_name: self.display_name).size > 1
+         complete_name
+       else
+         self.display_name
+       end
      end
   end
 
