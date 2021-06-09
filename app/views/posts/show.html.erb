@@ -17,9 +17,9 @@
 
 <div class="post_content">
 <% content_array = @post.content.split("\n") -%>
-<% content_array.each { |x| -%>
+<% content_array.each do |x| -%>
   <p><%= x %></p>
-<% } -%>
+<% end -%>
 </div>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
