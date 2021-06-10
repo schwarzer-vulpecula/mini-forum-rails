@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :username, format: { with: /\A[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\z/ }, length: { minimum: 3, maximum: 25}, uniqueness: true
   validates :password, confirmation: true, length: { minimum: 8, maximum: 24 }, if: -> { self.salt.nil? }
   validates :display_name, length: { maximum: 30 }, format: { without: /@/ }
+  validates :about_me, length: { maximum: 150 }
 
   before_save :hash_password, if: -> { self.salt.nil? }
 

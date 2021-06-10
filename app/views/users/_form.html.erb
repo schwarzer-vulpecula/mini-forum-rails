@@ -31,6 +31,11 @@
     <%= form.text_field :display_name %>
   </div>
 
+  <div class="field">
+    <%= form.label :about_me, "About Me" %>
+    <%= form.text_area :about_me, size: "30x8" %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

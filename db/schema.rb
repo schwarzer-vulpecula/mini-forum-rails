@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_09_070400) do
+ActiveRecord::Schema.define(version: 2021_06_10_072309) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2021_06_09_070400) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "salt"
     t.string "display_name"
+    t.text "about_me"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
