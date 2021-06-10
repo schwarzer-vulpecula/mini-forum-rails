@@ -8,6 +8,4 @@
 <br><%= @user.about_me %></p>
 </div>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Back', users_path %>
+<%= render 'shared/show_footer', object: @user %>
