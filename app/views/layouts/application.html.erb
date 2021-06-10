@@ -14,13 +14,19 @@
     <% flash.each do |name, msg| -%>
       <%= content_tag :div, msg, id: name %>
     <% end -%>
+    <p><%= link_to 'Home', root_path %> | <%= link_to 'Posts', posts_path %> | <%= link_to 'Users', users_path %>
     <% if signed_in? -%>
-      <p> You are signed in as <%= current_user.complete_name %>. | 
-	<%= link_to 'Sign Out', logout_url, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-    <% else -%>
-      <p>You are not signed in. | 
-	<%= link_to 'Sign In', login_url %></p>
+     | <%= link_to 'My Profile', current_user %>
     <% end -%>
+    </p>
+    <p>
+    <% if signed_in? -%>
+      You are signed in as <%= current_user.complete_name %>. | <%= link_to 'Sign Out', logout_url,
+	method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% else -%>
+      You are not signed in. | <%= link_to 'Sign In', login_url %>
+    <% end -%>
+    </p>
     <%= yield %>
   </body>
 </html>
