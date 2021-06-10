@@ -1,12 +1,11 @@
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
-
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
+<h1><%= @user.complete_name %></h1>
+<h3>User</h3>
+<p><b>Joined Date: </b><%= @user.created_at %></p>
+<p><b>Post Count: </b><%= @user.posts.size %></p>
+<p><b>Comment Count: </b><%= '?' %></p>
+<p><b>About Me</b>
+<br><%= 'Placeholder text' %></p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', users_path %>
