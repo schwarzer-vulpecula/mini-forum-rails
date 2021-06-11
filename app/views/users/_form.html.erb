@@ -36,6 +36,13 @@
     <%= form.text_area :about_me, size: "30x8" %>
   </div>
 
+  <div class="field">
+    <%= form.label :avatar, "Avatar" %>
+    <%= form.select(:avatar, User.avatars.keys.map {|avatar| [avatar.titleize,avatar]}) %>
+  </div>
+  <%= image_tag (user.avatar_url)%>
+  <p><b><%= user.avatar.titleize %></b></p>
+
   <div class="actions">
     <%= form.submit %>
   </div>

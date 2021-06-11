@@ -2,6 +2,7 @@ require 'securerandom'
 require 'digest'
 
 class User < ApplicationRecord
+  enum avatar: { 'corsac' => 0, 'ferrilata' => 1, 'lagopus' => 2, 'macrotis' => 3, 'silver' => 4, 'stenognathus' => 5, 'velox' => 6, 'vulpes-schrencki' => 7, 'zerda' => 8 }
   has_many :posts, dependent: :destroy
 
   validates :username, format: { with: /\A[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\z/ }, length: { minimum: 3, maximum: 25}, uniqueness: true
@@ -43,6 +44,11 @@ class User < ApplicationRecord
     else
       return self.display_name + ' (@' + self.username + ')'
     end
+  end
+
+  # Returns the url that should display the avatar
+  def avatar_url
+    'avatars/' + self.avatar
   end
 
   private

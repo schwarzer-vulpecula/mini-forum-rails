@@ -2,10 +2,10 @@
   <%= @post.title %>
 </h1>
 
-<h3>
-  <b>OP: </b>
-  <%= link_to @post.user.name, @post.user %>
-</h3>
+<div class="post_avatar">
+  <%= image_tag (@post.user.avatar_url), size: '64x64'%>
+  <h3>&nbsp;OP: <%= link_to @post.user.name, @post.user %></h3>
+</div>
 
 <h4>
   <b>Posted On: </b>
