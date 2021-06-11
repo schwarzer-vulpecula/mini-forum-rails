@@ -2,8 +2,8 @@
 <h1><%= @user.complete_name %></h1>
 <h3>User</h3>
 <p><b>Join Date: </b><%= @user.created_at %></p>
-<p><b>Post Count: </b><%= @user.posts.size %></p>
-<p><b>Comment Count: </b><%= '?' %></p>
+<p><b>Post Count: </b><%= @user.post_count %></p>
+<p><b>Comment Count: </b><%= @user.comment_count %></p>
 <div class="user_about_me">
 <p><b>About Me</b>
 <br><%= @user.about_me %></p>

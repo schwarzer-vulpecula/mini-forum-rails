@@ -51,6 +51,16 @@ class User < ApplicationRecord
     'avatars/' + self.avatar
   end
 
+  # Returns the number of posts this user has made
+  def post_count
+     posts.size
+  end
+
+  # Returns the number of comments (and replies) this user has made
+  def comment_count
+     '?'
+  end
+
   private
     # Hashes the password, using salts, so that it is not stored in plain text
     # This is not the most secure implementation
