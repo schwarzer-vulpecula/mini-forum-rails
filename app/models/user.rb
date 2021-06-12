@@ -3,7 +3,9 @@ require 'digest'
 
 class User < ApplicationRecord
   enum avatar: { 'corsac' => 0, 'ferrilata' => 1, 'lagopus' => 2, 'macrotis' => 3, 'silver' => 4, 'stenognathus' => 5, 'velox' => 6, 'vulpes-schrencki' => 7, 'zerda' => 8 }
+
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates :username, format: { with: /\A[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\z/ }, length: { minimum: 3, maximum: 25}, uniqueness: true
   validates :password, confirmation: true, length: { minimum: 8, maximum: 24 }, if: -> { self.salt.nil? }
