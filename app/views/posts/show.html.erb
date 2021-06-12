@@ -1,25 +1,3 @@
-<h1>
-  <%= @post.title %>
-</h1>
-
-<div class="post_avatar">
-  <%= image_tag (@post.user.avatar_url), size: '64x64'%>
-  <h3>&nbsp;OP: <%= link_to @post.user.name, @post.user %></h3>
-</div>
-
-<h4>
-  <b>Posted On: </b>
-  <%= @post.created_at %>
-  <b> | </b>
-  <b>Last Updated: </b>
-  <%= @post.updated_at %>
-</h4>
-
-<div class="post_content">
-<% content_array = @post.content.split("\n") -%>
-<% content_array.each do |x| -%>
-  <p><%= x %></p>
-<% end -%>
-</div>
+<%= render 'post', post: @post %>
 
 <%= render 'shared/show_footer', object: @post %>
