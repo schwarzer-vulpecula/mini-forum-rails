@@ -5,9 +5,10 @@
     <tr>
       <th>Title</th>
       <th>OP</th>
+      <th>Comments</th>
       <th>Posted On</th>
       <th>Last Updated</th>
-      <th colspan="5"></th>
+      <th colspan="6"></th>
     </tr>
   </thead>
 
@@ -16,6 +17,7 @@
       <tr>
         <td><%= link_to post.title, post %></td>
         <td><%= link_to post.user.name, post.user %></td>
+        <td><%= post.comments.size %></th>
         <td><%= post.created_at %></td>
         <td><%= post.updated_at %></td>
         <td><%= link_to 'Show', post %></td>

@@ -12,14 +12,10 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :content %>
     <%= form.text_area :content %>
   </div>
 
-  <div class="field">
-    <%= form.label :post_id %>
-    <%= form.text_field :post_id %>
-  </div>
+  <%= form.hidden_field :post_id, :value => comment.post.id %>
 
   <div class="actions">
     <%= form.submit %>
