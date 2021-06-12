@@ -75,14 +75,7 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      filtered_params = params.require(:user).permit(:username, :password, :password_confirmation, :display_name, :about_me, :avatar)
-      filtered_params.each_key do |k|
-        # Squish all user inputs except passwords
-        unless k == 'password' || k == 'password_confirmation'
-          filtered_params[k] = filtered_params[k].squish
-        end
-      end
-      return filtered_params
+      sanitize params.require(:user).permit(:username, :password, :password_confirmation, :display_name, :about_me, :avatar)
     end
 
     def require_permission

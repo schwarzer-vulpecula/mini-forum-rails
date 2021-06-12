@@ -66,22 +66,7 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      filtered_params = params.require(:post).permit(:title, :content)
-      filtered_params.each_key do |k|
-        # Squish all user inputs
-        if k == 'content'
-          # Squish each individual lines instead
-          content_array = filtered_params[k].split("\n")
-          for i in 0...content_array.length
-            content_array[i] = content_array[i].squish
-          end
-          # Rejoin the lines into one
-          filtered_params[k] = content_array.reject(&:blank?).join("\n")
-        else
-          filtered_params[k] = filtered_params[k].squish
-        end
-      end
-      return filtered_params
+      sanitize params.require(:post).permit(:title, :content)
     end
 
     def require_permission
