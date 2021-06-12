@@ -1,3 +1,3 @@
 <%= link_to 'Show', object %> |
 <%= link_to 'Destroy', object, method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Back', :back %>
+<%= link_to "Back to #{object.model_name.name.pluralize}", send("#{object.model_name.name.pluralize.underscore}_path") %>

@@ -1,1 +1,1 @@
-<%= link_to 'Back', :back %>
+<%= link_to "Back to #{object.model_name.name.pluralize}", send("#{object.model_name.name.pluralize.underscore}_path") %>
