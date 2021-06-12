@@ -1,4 +1,4 @@
-<%= render 'posts/post', post: @post %>
+<%= render 'post', post: @post %>
 <br>
 <%= render 'shared/show_footer', object: @post %>
 <br>
@@ -6,7 +6,18 @@
 <% if signed_in? -%>
   <div class="post_avatar">
     <%= image_tag (current_user.avatar_url), size: '64x64'%>
-    <h3>&nbsp;Commenter: <%= link_to current_user.name, current_user %></h3>
+    <h3>&nbsp;User: <%= link_to current_user.name, current_user %></h3>
   </div>
   <%= render 'comments/form', comment: @post.comments.new %>
+<% end -%>
+<br>
+<% @post.comments.each do |comment| -%>
+  <% next if comment.new_record? -%>
+  <%= render 'comments/comment', comment: comment %>
+  <p>
+    <%= link_to 'Show', comment %></td> | 
+    <%= link_to 'Edit', edit_comment_path(comment) %> | 
+    <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </p>
+  <br>
 <% end -%>

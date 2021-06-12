@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: "Comment was successfully created." }
+        format.html { redirect_to @comment.post, notice: "Comment was successfully created." }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { redirect_to @comment.post, alert: "Comment cannot be empty." }
@@ -57,5 +57,11 @@ class CommentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def comment_params
       sanitize params.require(:comment).permit(:content, :post_id)
+    end
+
+    def require_permission
+      unless authorized?(@comment.user)
+        unauthorized_redirect_to @comment
+      end
     end
 end

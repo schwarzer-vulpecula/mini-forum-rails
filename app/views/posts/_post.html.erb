@@ -7,17 +7,18 @@
   <h3>&nbsp;OP: <%= link_to post.user.name, post.user %></h3>
 </div>
 
-<h4>
+<p>
   <b>Posted On: </b>
   <%= post.created_at %>
-  <b> | </b>
+   | 
   <b>Last Updated: </b>
   <%= post.updated_at %>
-</h4>
+</p>
 
 <div class="post_content">
 <% content_array = post.content.split("\n") -%>
 <% content_array.each do |x| -%>
-  <p><%= x %></p>
+  <%= x %>
+  <br>
 <% end -%>
 </div>
