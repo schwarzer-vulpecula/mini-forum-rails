@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "home#index"
   resources :posts
   resources :users
-  resources :comments, except: [:index]
+  resources :comments, except: [:index, :new]
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   get 'logout' => 'sessions#destroy'
