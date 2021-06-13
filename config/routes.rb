@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :users
   resources :comments, except: [:index, :new]
+  resources :replies, except: [:index, :show, :new]
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   get 'logout' => 'sessions#destroy'
