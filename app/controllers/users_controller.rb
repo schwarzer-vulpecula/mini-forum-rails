@@ -39,8 +39,8 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1 or /users/1.json
   def update
     filtered_params = user_params
-    if filtered_params[:password].length == 0
-      # Do not update password; remove it from the hash
+    if filtered_params[:password].length == 0 && filtered_params[:password_confirmation].length == 0
+      # Do not attempt to update the password; remove it from the hash
       filtered_params.delete(:password)
       filtered_params.delete(:password_confirmation)
     else
