@@ -8,3 +8,9 @@
     <%= link_to 'Back to Comment', @reply.comment %>
   </p>
 </div>
+
+<h1>Original Comment</h1>
+<%= render 'comments/comment', comment: @reply.comment %>
+
+<h1>Original Post</h1>
+<%= render 'posts/post', post: @reply.comment.post %>

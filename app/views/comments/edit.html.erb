@@ -3,3 +3,6 @@
 <%= render 'form', comment: @comment %>
 
 <%= render 'shared/edit_footer', object: @comment %>
+
+<h1>Original Post</h1>
+<%= render 'posts/post', post: @comment.post %>
