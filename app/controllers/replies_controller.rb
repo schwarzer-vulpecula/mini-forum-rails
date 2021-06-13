@@ -8,7 +8,7 @@ class RepliesController < ApplicationController
 
   # POST /replies or /replies.json
   def create
-    @reply = current_user.replies.new(replu_params)
+    @reply = current_user.replies.new(reply_params)
 
     respond_to do |format|
       if @reply.save

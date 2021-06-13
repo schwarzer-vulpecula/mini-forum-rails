@@ -1,0 +1,18 @@
+<div class="reply_avatar">
+  <%= image_tag (reply.user.avatar_url), size: '64x64'%>
+  <h3>&nbsp;User: <%= link_to reply.user.name, reply.user %></h3>
+</div>
+<p>
+  <b>Posted On: </b>
+  <%= reply.created_at %>
+   | 
+  <b>Last Updated: </b>
+  <%= reply.updated_at %>
+</p>
+<div class="reply_content">
+<% content_array = reply.content.split("\n") -%>
+<% content_array.each do |x| -%>
+  <%= x %>
+  <br>
+<% end -%>
+</div>

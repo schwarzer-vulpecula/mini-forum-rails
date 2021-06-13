@@ -2,5 +2,7 @@
 
 <%= render 'form', reply: @reply %>
 
-<%= link_to 'Show', @reply %> |
-<%= link_to 'Back', replies_path %>
+<p>
+  <%= link_to 'Destroy', @reply, method: :delete, data: { confirm: 'Are you sure?' } %> | 
+  <%= link_to 'Back to Comment', @reply.comment %>
+</p>

@@ -15,7 +15,7 @@
     <%= form.text_area :content, size: "60x10" %>
   </div>
 
-  <%= form.hidden_field :post_id, :value => reply.comment.id %>
+  <%= form.hidden_field :comment_id, :value => reply.comment.id %>
 
   <div class="actions">
     <%= form.submit %>

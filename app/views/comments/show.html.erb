@@ -18,3 +18,12 @@
   <%= render 'replies/form', reply: @comment.replies.new %>
 <% end -%>
 <br>
+<% @comment.replies.each do |reply| -%>
+  <% next if reply.new_record? -%>
+  <%= render 'replies/reply', reply: reply %>
+  <p>
+    <%= link_to 'Edit', edit_reply_path(reply) %> | 
+    <%= link_to 'Destroy', reply, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </p>
+  <br>
+<% end -%>
