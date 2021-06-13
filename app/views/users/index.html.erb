@@ -7,7 +7,8 @@
       <th>Join Date</th>
       <th>Posts</th>
       <th>Comments</th>
-      <th colspan="5"></th>
+      <th>Replies</th>
+      <th colspan="6"></th>
     </tr>
   </thead>
 
@@ -18,6 +19,7 @@
         <td><%= user.created_at %></td>
         <td><%= user.post_count %></td>
         <td><%= user.comment_count %></td>
+        <td><%= user.reply_count %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

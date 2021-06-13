@@ -59,9 +59,14 @@ class User < ApplicationRecord
      posts.size
   end
 
-  # Returns the number of comments (and replies) this user has made
+  # Returns the number of comments this user has made
   def comment_count
-     '?'
+     comments.size
+  end
+
+  # Returns the number of replies this user has made
+  def reply_count
+     replies.size
   end
 
   private
