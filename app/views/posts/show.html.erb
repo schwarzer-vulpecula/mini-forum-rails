@@ -10,6 +10,8 @@
     <h3>&nbsp;User: <%= link_to current_user.name, current_user %></h3>
   </div>
   <%= render 'comments/form', comment: @post.comments.new %>
+<% else -%>
+  <p>Sign in to comment on this post | <%= link_to 'Sign In', login_url %></p>
 <% end -%>
 <br>
 <% @post.comments.order("created_at desc").each do |comment| -%>
