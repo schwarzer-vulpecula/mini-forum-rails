@@ -1,4 +1,6 @@
-<p>
-  <%= link_to 'Destroy', object, method: :delete, data: { confirm: 'Are you sure?' } %> |
-  <%= link_to "Back to #{object.model_name.name}", send("#{object.model_name.name.underscore}_path", object) %>
-</p>
+<div class=footer>
+  <p>
+    <%= link_to 'Destroy', object, method: :delete, data: { confirm: 'Are you sure?' } %> |
+    <%= link_to "Back to #{object.model_name.name}", send("#{object.model_name.name.underscore}_path", object) %>
+  </p>
+</div>

@@ -2,7 +2,9 @@
 
 <%= render 'form', reply: @reply %>
 
-<p>
-  <%= link_to 'Destroy', @reply, method: :delete, data: { confirm: 'Are you sure?' } %> | 
-  <%= link_to 'Back to Comment', @reply.comment %>
-</p>
+<div class=footer>
+  <p>
+    <%= link_to 'Destroy', @reply, method: :delete, data: { confirm: 'Are you sure?' } %> | 
+    <%= link_to 'Back to Comment', @reply.comment %>
+  </p>
+</div>

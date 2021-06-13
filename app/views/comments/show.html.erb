@@ -2,11 +2,13 @@
 
 <%= render 'comment', comment: @comment %>
 
-<p>
-  <%= link_to 'Edit', edit_comment_path(@comment) %> | 
-  <%= link_to 'Destroy', @comment, method: :delete, data: { confirm: 'Are you sure?' } %> | 
-  <%= link_to 'Back to Post', @comment.post %>
-</p>
+<div class=footer>
+  <p>
+    <%= link_to 'Edit', edit_comment_path(@comment) %> | 
+    <%= link_to 'Destroy', @comment, method: :delete, data: { confirm: 'Are you sure?' } %> | 
+    <%= link_to 'Back to Post', @comment.post %>
+  </p>
+</div>
 
 <h2>Replies (<%= @comment.replies.size %>)</h2>
 
@@ -21,9 +23,11 @@
 <% @comment.replies.order("created_at desc").each do |reply| -%>
   <% next if reply.new_record? -%>
   <%= render 'replies/reply', reply: reply %>
-  <p>
-    <%= link_to 'Edit', edit_reply_path(reply) %> | 
-    <%= link_to 'Destroy', reply, method: :delete, data: { confirm: 'Are you sure?' } %>
-  </p>
+  <div class=footer>
+    <p>
+      <%= link_to 'Edit', edit_reply_path(reply) %> | 
+      <%= link_to 'Destroy', reply, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </p>
+  </div>
   <br>
 <% end -%>

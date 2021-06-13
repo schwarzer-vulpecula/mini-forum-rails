@@ -27,3 +27,7 @@ a {
 table {
   border-spacing: 10px;
 }
+
+.footer {
+  font-weight: bold;
+}
