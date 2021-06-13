@@ -18,7 +18,7 @@
   <%= render 'replies/form', reply: @comment.replies.new %>
 <% end -%>
 <br>
-<% @comment.replies.each do |reply| -%>
+<% @comment.replies.order("created_at desc").each do |reply| -%>
   <% next if reply.new_record? -%>
   <%= render 'replies/reply', reply: reply %>
   <p>

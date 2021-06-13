@@ -12,7 +12,7 @@
   <%= render 'comments/form', comment: @post.comments.new %>
 <% end -%>
 <br>
-<% @post.comments.each do |comment| -%>
+<% @post.comments.order("created_at desc").each do |comment| -%>
   <% next if comment.new_record? -%>
   <%= render 'comments/comment', comment: comment %>
   <p>
