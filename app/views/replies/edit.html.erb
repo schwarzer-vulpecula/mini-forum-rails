@@ -1,4 +1,4 @@
-<h1>Editing Reply</h1>
+<h1>Editing Reply to Comment by <%= link_to @reply.comment.user.name, @reply.comment.user %> in Post "<%= link_to @reply.comment.post.title, @reply.comment.post %>"</h1>
 
 <%= render 'form', reply: @reply %>
 

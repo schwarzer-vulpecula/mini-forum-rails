@@ -1,0 +1,7 @@
+<h1>New Reply to Comment by <%= link_to @reply.comment.user.name, @reply.comment.user %> in Post "<%= link_to @reply.comment.post.title, @reply.comment.post %>"</h1>
+
+<%= render 'form', reply: @reply %>
+
+<p>
+  <%= link_to 'Back to Comment', @reply.comment %>
+</p>

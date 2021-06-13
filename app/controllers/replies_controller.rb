@@ -1,6 +1,6 @@
 class RepliesController < ApplicationController
-  before_action :set_reply, except: %i[ create ]
-  before_action :require_permission, except: %i[ create ]
+  before_action :set_reply, only: %i[ edit update destroy ]
+  before_action :require_permission, only: %i[ edit update destroy ]
 
   # GET /replies/1/edit
   def edit
@@ -15,7 +15,7 @@ class RepliesController < ApplicationController
         format.html { redirect_to @reply.comment, notice: "Reply was successfully created." }
         format.json { render :show, status: :created, location: @reply }
       else
-        format.html { redirect_to @reply.comment, alert: "Reply cannot be empty." }
+        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @reply.errors, status: :unprocessable_entity }
       end
     end
