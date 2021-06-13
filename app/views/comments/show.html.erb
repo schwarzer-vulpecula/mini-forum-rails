@@ -1,14 +1,20 @@
-<p id="notice"><%= notice %></p>
+<h1>Comment by <%= link_to @comment.user.name, @comment.user %> in Post "<%= link_to @comment.post.title, @comment.post %>"</h1>
+
+<%= render 'comment', comment: @comment %>
 
 <p>
-  <strong>Content:</strong>
-  <%= @comment.content %>
+  <%= link_to 'Edit', edit_comment_path(@comment) %> | 
+  <%= link_to 'Destroy', @comment, method: :delete, data: { confirm: 'Are you sure?' } %> | 
+  <%= link_to 'Back to Post', @comment.post %>
 </p>
 
-<p>
-  <strong>Post:</strong>
-  <%= @comment.post_id %>
-</p>
+<h2>Replies (<%= @comment.replies.size %>)</h2>
 
-<%= link_to 'Edit', edit_comment_path(@comment) %> |
-<%= link_to 'Back', comments_path %>
+<% if signed_in? -%>
+  <div class="reply_avatar">
+    <%= image_tag (current_user.avatar_url), size: '64x64'%>
+    <h3>&nbsp;User: <%= link_to current_user.name, current_user %></h3>
+  </div>
+  <%= render 'replies/form', reply: @comment.replies.new %>
+<% end -%>
+<br>

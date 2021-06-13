@@ -1,3 +1,13 @@
 // Place all the styles related to the Replies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.reply_content {
+  width: 450px;
+  word-wrap: break-word;
+}
+
+.reply_avatar {
+   display: flex;
+   align-items:center;
+}
