@@ -60,7 +60,7 @@ class CommentsController < ApplicationController
     end
 
     def require_permission
-      unless authorized?(@comment.user)
+      unless higher_rank?(@comment.user)
         unauthorized_redirect_to @comment
       end
     end

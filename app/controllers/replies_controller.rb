@@ -55,7 +55,7 @@ class RepliesController < ApplicationController
     end
 
     def require_permission
-      unless authorized?(@reply.user)
+      unless higher_rank?(@reply.user)
         unauthorized_redirect_to @reply.comment
       end
     end

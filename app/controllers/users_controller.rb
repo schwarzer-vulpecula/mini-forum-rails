@@ -90,7 +90,7 @@ class UsersController < ApplicationController
     end
 
     def require_permission
-      unless authorized?(@user)
+      unless higher_rank?(@user)
         unauthorized_redirect_to @user
       end
     end

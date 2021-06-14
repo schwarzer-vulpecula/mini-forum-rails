@@ -70,7 +70,7 @@ class PostsController < ApplicationController
     end
 
     def require_permission
-      unless authorized?(@post.user)
+      unless higher_rank?(@post.user)
         unauthorized_redirect_to @post
       end
     end
