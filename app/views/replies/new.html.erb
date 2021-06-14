@@ -8,8 +8,8 @@
   </p>
 </div>
 
-<h1>Original Comment</h1>
+<h1><%= link_to 'Comment', @reply.comment %></h1>
 <%= render 'comments/comment', comment: @reply.comment %>
 
-<h1>Original Post</h1>
+<h1><%= link_to 'Original Post', @reply.comment.post %></h1>
 <%= render 'posts/post', post: @reply.comment.post %>

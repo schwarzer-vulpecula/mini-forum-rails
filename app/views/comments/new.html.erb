@@ -6,5 +6,5 @@
   <p><%= link_to 'Back to Post', @comment.post %></p>
 </div>
 
-<h1>Original Post</h1>
+<h1><%= link_to 'Original Post', @comment.post %></h1>
 <%= render 'posts/post', post: @comment.post %>

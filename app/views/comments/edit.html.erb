@@ -4,5 +4,5 @@
 
 <%= render 'shared/edit_footer', object: @comment %>
 
-<h1>Original Post</h1>
+<h1><%= link_to 'Original Post', @comment.post %></h1>
 <%= render 'posts/post', post: @comment.post %>

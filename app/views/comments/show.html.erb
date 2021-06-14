@@ -19,7 +19,7 @@
   </div>
   <%= render 'replies/form', reply: @comment.replies.new %>
 <% else -%>
-  <p>Sign in to reply to this comment | <%= link_to 'Sign In', login_url %></p>
+  <p>Sign in to reply to this comment. | <%= link_to 'Sign In', login_url %></p>
 <% end -%>
 <br>
 <% @comment.replies.order("created_at desc").each do |reply| -%>
@@ -34,5 +34,5 @@
   <br>
 <% end -%>
 
-<h1>Original Post</h1>
+<h1><%= link_to 'Original Post', @comment.post %></h1>
 <%= render 'posts/post', post: @comment.post %>
