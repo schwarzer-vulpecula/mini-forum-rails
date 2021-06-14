@@ -29,8 +29,7 @@ module SessionsHelper
   # Returns true if current user is allowed to modify resources owned by the given user
   def authorized?(user)
     return false unless signed_in?
-    # For now, just check for equality
-    current_user == user
+    current_user == user || current_user.rank_before_type_cast > user.rank_before_type_cast
   end
 
 end
