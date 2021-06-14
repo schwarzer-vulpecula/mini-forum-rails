@@ -14,7 +14,7 @@
   </thead>
 
   <tbody>
-    <% @users.order("created_at desc").each do |user| %>
+    <% @users.reorder("display_name asc").order("username asc").each do |user| %>
       <tr>
         <td><%= link_to user.name, user %></td>
         <td><%= user.rank_name_short %></td>
