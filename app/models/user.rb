@@ -87,6 +87,15 @@ class User < ApplicationRecord
     end
   end
 
+  # Similar to the above method, but this will also label the user as OP if applicable
+  def rank_name_op(op)
+    if self == op
+      rank_name_short + ' (OP)'
+    else
+      rank_name_short
+    end
+  end
+
   private
     # Hashes the password, using salts, so that it is not stored in plain text
     # This is not the most secure implementation
