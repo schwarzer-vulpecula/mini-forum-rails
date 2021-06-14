@@ -15,7 +15,7 @@
 <% if signed_in? -%>
   <div class="reply_avatar">
     <%= image_tag (current_user.avatar_url), size: '64x64'%>
-    <h3>&nbsp;<%= current_user.rank_name_op(@comment.post.user) %>: <%= link_to current_user.name, current_user %></h3>
+    <h3>&nbsp;<%= current_user.rank_name_op_you(@comment.post.user, current_user) %>: <%= link_to current_user.name, current_user %></h3>
   </div>
   <%= render 'replies/form', reply: @comment.replies.new %>
 <% else -%>

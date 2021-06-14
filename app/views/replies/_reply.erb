@@ -1,6 +1,6 @@
 <div class="reply_avatar">
   <%= image_tag (reply.user.avatar_url), size: '64x64'%>
-  <h3>&nbsp;<%= reply.user.rank_name_op(reply.comment.post.user) %>: <%= link_to reply.user.name, reply.user %></h3>
+  <h3>&nbsp;<%= reply.user.rank_name_op_you(reply.comment.post.user, current_user) %>: <%= link_to reply.user.name, reply.user %></h3>
 </div>
 <p>
   <b>Posted On: </b>

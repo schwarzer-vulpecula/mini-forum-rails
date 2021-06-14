@@ -87,13 +87,12 @@ class User < ApplicationRecord
     end
   end
 
-  # Similar to the above method, but this will also label the user as OP if applicable
-  def rank_name_op(op)
-    if self == op
-      rank_name_short + ' (OP)'
-    else
-      rank_name_short
-    end
+  # Similar to the above method, but this will also label the user as (OP) or (You) if applicable
+  def rank_name_op_you(op, current_user)
+    string = rank_name_short
+    string << ' (You)' if self == current_user
+    string << ' (OP)' if self == op
+    string
   end
 
   private
