@@ -7,13 +7,7 @@
   <h3>&nbsp;<%= post.user.rank_name_op_you(post.user, current_user) %>: <%= link_to post.user.name, post.user %></h3>
 </div>
 
-<p>
-  <b>Posted On: </b>
-  <%= post.created_at %>
-   | 
-  <b>Last Updated: </b>
-  <%= post.updated_at %>
-</p>
+<%= render 'shared/timestamp', created_at: post.created_at, updated_at: post.updated_at %>
 
 <div class="post_content">
 <% content_array = post.content.split("\n") -%>

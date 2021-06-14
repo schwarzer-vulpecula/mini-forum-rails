@@ -1,7 +1,7 @@
 <%= image_tag (@user.avatar_url), size: '256x256'%>
 <h1><%= @user.complete_name %></h1>
 <h3><%= @user.rank_name %></h3>
-<p><b>Join Date: </b><%= @user.created_at %></p>
+<p><b>Joined: </b><%= time_ago_in_words @user.created_at %> ago</p>
 <p><b>Post Count: </b><%= @user.post_count %></p>
 <p><b>Comment Count: </b><%= @user.comment_count %></p>
 <p><b>Reply Count: </b><%= @user.reply_count %></p>

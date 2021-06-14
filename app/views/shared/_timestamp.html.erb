@@ -1,0 +1,8 @@
+<p>
+  <b>Posted: </b>
+  <%= time_ago_in_words created_at %> ago
+  <% if updated_at != created_at -%>
+     | <b>Last Updated: </b>
+    <%= time_ago_in_words updated_at %> ago
+  <% end -%>
+</p>

@@ -8,20 +8,20 @@
       <th>Posts</th>
       <th>Comments</th>
       <th>Replies</th>
-      <th>Join Date</th>
+      <th>Joined</th>
       <th colspan="7"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
+    <% @users.order("created_at desc").each do |user| %>
       <tr>
         <td><%= link_to user.name, user %></td>
         <td><%= user.rank_name_short %></td>
         <td><%= user.post_count %></td>
         <td><%= user.comment_count %></td>
         <td><%= user.reply_count %></td>
-        <td><%= user.created_at %></td>
+        <td><%= time_ago_in_words user.created_at %> ago</td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
