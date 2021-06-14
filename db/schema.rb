@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_13_065030) do
+ActiveRecord::Schema.define(version: 2021_06_14_065643) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2021_06_13_065030) do
     t.string "display_name"
     t.text "about_me"
     t.integer "avatar", default: 7
+    t.integer "rank", default: 1
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
