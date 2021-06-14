@@ -3,6 +3,7 @@ require 'digest'
 
 class User < ApplicationRecord
   enum avatar: { 'corsac' => 0, 'ferrilata' => 1, 'lagopus' => 2, 'macrotis' => 3, 'silver' => 4, 'stenognathus' => 5, 'velox' => 6, 'vulpes-schrencki' => 7, 'zerda' => 8 }
+  enum rank: { 'user' => 1, 'moderator' => 2, 'administrator' => 3 }
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -20,9 +21,9 @@ class User < ApplicationRecord
     password << self.salt
     password = Digest::SHA256.hexdigest password
     if password == self.password
-      return true
+      true
     else
-      return false
+      false
     end
   end
 
@@ -45,7 +46,7 @@ class User < ApplicationRecord
     if display_name.blank?
       name
     else
-      return self.display_name + ' (@' + self.username + ')'
+      self.display_name + ' (@' + self.username + ')'
     end
   end
 
@@ -67,6 +68,23 @@ class User < ApplicationRecord
   # Returns the number of replies this user has made
   def reply_count
      replies.size
+  end
+
+
+  # Returns the rank of the user as a readable string
+  def rank_name
+    self.rank.humanize
+  end
+
+  # Same as the above method, but shortened if possible
+  def rank_name_short
+    if self.rank == 'administrator'
+      'Admin'
+    elsif self.rank == 'moderator'
+      'Mod'
+    else
+      rank_name
+    end
   end
 
   private

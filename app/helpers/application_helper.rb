@@ -19,7 +19,7 @@ module ApplicationHelper
         params[k] = params[k].squish
       end
     end
-    return params
+    params
   end
 
   # Redirect to given location with a flash telling the user that they are not authorized
