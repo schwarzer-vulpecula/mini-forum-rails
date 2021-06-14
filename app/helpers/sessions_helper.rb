@@ -32,4 +32,20 @@ module SessionsHelper
     current_user == user || current_user.rank_before_type_cast > user.rank_before_type_cast
   end
 
+  # Returns true if current user is should be allowed to modify the username of the given user
+  def allow_username_change?(user)
+    user.new_record? || current_user.rank == 'administrator'
+  end
+
+  # Similar to the above, but for passwords
+  def allow_password_change?(user)
+    user.new_record? || current_user == user
+  end
+
+  # Returns true if current user should be allowed to destroy the given user
+  def allow_user_destroy?(user)
+    # Only admins can destroy any user for now
+    current_user.rank == 'administrator'
+  end
+
 end

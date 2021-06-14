@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1 or /users/1.json
   def update
     filtered_params = user_params
-    if filtered_params[:password].length == 0 && filtered_params[:password_confirmation].length == 0
+    if (filtered_params[:password].blank? && filtered_params[:password_confirmation].blank?) || !allow_password_change?(@user)
       # Do not attempt to update the password; remove it from the hash
       filtered_params.delete(:password)
       filtered_params.delete(:password_confirmation)
@@ -47,6 +47,7 @@ class UsersController < ApplicationController
       # Request to clear the salt so that a new one will be given
       filtered_params[:salt] = nil
     end
+    filtered_params.delete(:username) unless allow_username_change?(@user)
     respond_to do |format|
       if @user.update(filtered_params)
         format.html { redirect_to @user, notice: "User was successfully updated." }
@@ -60,10 +61,20 @@ class UsersController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
-    @user.destroy
+    if allow_user_destroy?(@user)
+      @user.destroy
+      success = true
+    else
+      success = false
+    end
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
+      if success
+        format.html { redirect_to users_url, notice: "User was successfully destroyed." }
+        format.json { head :no_content }
+      else
+        format.html { unauthorized_redirect_to @user }
+        format.json { head :no_content }
+      end
     end
   end
 

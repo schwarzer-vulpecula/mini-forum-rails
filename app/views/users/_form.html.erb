@@ -12,18 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :username, "Username" %>
-    <%= form.text_field :username %>
+    <%= form.label :username, "Username (Cannot Be Changed)" %>
+    <%= form.text_field :username, disabled: !allow_username_change?(user)%>
   </div>
 
   <div class="field">
     <%= form.label :password, "Password" %>
-    <%= form.password_field :password %>
+    <%= form.password_field :password, disabled: !allow_password_change?(user) %>
   </div>
 
   <div class="field">
     <%= form.label :password_confirmation, "Confirm Password" %>
-    <%= form.password_field :password_confirmation %>
+    <%= form.password_field :password_confirmation, disabled: !allow_password_change?(user) %>
   </div>
 
   <div class="field">
