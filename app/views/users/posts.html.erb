@@ -1,0 +1,5 @@
+<h1>Posts by <%= @user.complete_name %></h1>
+
+<%= render 'posts/table', posts: @user.posts.order("created_at desc") %>
+
+<div class=footer><p><%= link_to 'Back to User', @user %></p></div>

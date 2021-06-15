@@ -11,5 +11,6 @@
     <br><%= @user.about_me %></p>
   <% end -%>
 </div>
-
+<br>
+<div class=footer><p><%= link_to 'View Posts', user_posts_url %></p></div>
 <%= render 'shared/show_footer', object: @user %>
