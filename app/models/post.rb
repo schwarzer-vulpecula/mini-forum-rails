@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :title, length: { maximum: 50}, presence: true
-  validates :content, length: { maximum: 10000}, presence: true
+  validates :content, length: { maximum: 40000}, presence: true
 
 =begin
   Tells the post to update its recent_activity value with the current time.
