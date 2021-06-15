@@ -6,7 +6,7 @@ class RepliesController < ApplicationController
   def edit
   end
 
-  # POST /replies or /replies.json
+  # POST /replies
   def create
     @reply = current_user.replies.new(reply_params)
 
@@ -14,33 +14,28 @@ class RepliesController < ApplicationController
       if @reply.save
         @reply.comment.post.touch_recent
         format.html { redirect_to @reply.comment, notice: "Reply was successfully created." }
-        format.json { render :show, status: :created, location: @reply }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @reply.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /replies/1 or /replies/1.json
+  # PATCH/PUT /replies/1
   def update
     respond_to do |format|
       if @reply.update(reply_params)
         format.html { redirect_to @reply.comment, notice: "Reply was successfully updated." }
-        format.json { render :show, status: :ok, location: @reply }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @reply.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /replies/1 or /replies/1.json
+  # DELETE /replies/1
   def destroy
     @reply.destroy
     respond_to do |format|
       format.html { redirect_to replies_url, notice: "Reply was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 

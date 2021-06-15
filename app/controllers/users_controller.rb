@@ -3,12 +3,12 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy posts ]
   before_action :require_permission, only: %i[ edit update destroy ]
 
-  # GET /users or /users.json
+  # GET /users
   def index
     @users = User.all
   end
 
-  # GET /users/1 or /users/1.json
+  # GET /users/1
   def show
   end
 
@@ -21,22 +21,20 @@ class UsersController < ApplicationController
   def edit
   end
 
-  # POST /users or /users.json
+  # POST /users
   def create
     @user = User.new(user_params)
 
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: "User was successfully created." }
-        format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /users/1 or /users/1.json
+  # PATCH/PUT /users/1
   def update
     filtered_params = user_params
     if ((filtered_params[:password].nil? || filtered_params[:password].length == 0) && (filtered_params[:password_confirmation].nil? || filtered_params[:password_confirmation].length == 0)) || !allow_password_change?(@user)
@@ -51,15 +49,13 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update(filtered_params)
         format.html { redirect_to @user, notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /users/1 or /users/1.json
+  # DELETE /users/1
   def destroy
     if allow_user_destroy?(@user)
       @user.destroy
@@ -70,15 +66,13 @@ class UsersController < ApplicationController
     respond_to do |format|
       if success
         format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-        format.json { head :no_content }
       else
         format.html { unauthorized_redirect_to @user }
-        format.json { head :no_content }
       end
     end
   end
 
-  # GET /users/1/posts or /users/1/posts.json
+  # GET /users/1/posts
   def posts
   end
 
