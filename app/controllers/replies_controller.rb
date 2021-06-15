@@ -12,6 +12,7 @@ class RepliesController < ApplicationController
 
     respond_to do |format|
       if @reply.save
+        @reply.comment.post.touch_recent
         format.html { redirect_to @reply.comment, notice: "Reply was successfully created." }
         format.json { render :show, status: :created, location: @reply }
       else

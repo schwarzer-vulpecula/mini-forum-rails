@@ -7,7 +7,7 @@
       <th>OP</th>
       <th>Comments</th>
       <th>Posted</th>
-      <th>Last Updated</th>
+      <th>Recent Activity</th>
       <th colspan="6"></th>
     </tr>
   </thead>
@@ -19,7 +19,7 @@
         <td><%= link_to post.user.name, post.user %></td>
         <td><%= post.comments.size %></th>
         <td><%= time_ago_in_words post.created_at %> ago</td>
-        <td><%= time_ago_in_words post.updated_at %> ago</td>
+        <td><%= time_ago_in_words post.recent_activity %> ago</td>
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>

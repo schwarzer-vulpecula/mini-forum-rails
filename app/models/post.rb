@@ -4,4 +4,14 @@ class Post < ApplicationRecord
 
   validates :title, length: { maximum: 50}, presence: true
   validates :content, length: { maximum: 10000}, presence: true
+
+=begin
+  Tells the post to update its recent_activity value with the current time.
+  Because the update_at is supposed to represent when the post's content is actually updated,
+  this need to be done differently.
+=end
+  def touch_recent
+    self.recent_activity = Time.now
+    self.save(touch: false)
+  end
 end
