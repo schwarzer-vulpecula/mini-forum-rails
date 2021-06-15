@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "home#index"
+  get 'faq' => 'home#faq'
 
   resources :posts
 
