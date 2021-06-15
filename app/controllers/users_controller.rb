@@ -5,7 +5,8 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.all
+    params[:search] = params[:search].squish unless params[:search].nil?
+    @users = User.search(params[:search])
   end
 
   # GET /users/1
@@ -74,6 +75,8 @@ class UsersController < ApplicationController
 
   # GET /users/1/posts
   def posts
+    params[:search] = params[:search].squish unless params[:search].nil?
+    @user_posts = @user.search_post(params[:search])
   end
 
   private

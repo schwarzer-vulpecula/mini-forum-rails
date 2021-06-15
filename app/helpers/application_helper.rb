@@ -28,4 +28,7 @@ module ApplicationHelper
     redirect_to location
   end
 
+  def searching?
+    !params[:search].blank?
+  end
 end

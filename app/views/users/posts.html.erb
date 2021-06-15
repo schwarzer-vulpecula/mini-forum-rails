@@ -1,5 +1,14 @@
 <h1>Posts by <%= @user.complete_name %></h1>
 
-<%= render 'posts/table', posts: @user.posts.order("created_at desc") %>
+<%= form_tag(user_posts_path, method: :get) do %>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= submit_tag ("Search") %>
+<% end %>
+
+<% if searching? -%>
+  <p>Searching for <b><%= params[:search] %></b> in Posts by <%= @user.complete_name %> | <%= link_to 'Clear Query', user_posts_path %></p>
+<% end -%>
+
+<%= render 'posts/table', posts: @user_posts.order("created_at desc") %>
 
 <div class=footer><p><%= link_to 'Back to User', @user %></p></div>

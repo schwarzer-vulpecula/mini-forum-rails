@@ -1,5 +1,14 @@
 <h1>Posts</h1>
 
+<%= form_tag(posts_path, method: :get) do %>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= submit_tag ("Search") %>
+<% end %>
+
+<% if searching? -%>
+  <p>Searching for <b><%= params[:search] %></b> in Posts | <%= link_to 'Clear Query', posts_path %></p>
+<% end -%>
+
 <%= render 'table', posts: @posts.order("created_at desc") %>
 
 <div class=footer><p><%= link_to 'New Post', new_post_path %></p></div>

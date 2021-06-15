@@ -14,4 +14,13 @@ class Post < ApplicationRecord
     self.recent_activity = Time.now
     self.save(touch: false)
   end
+
+  # Returns posts with a title matching the search query
+  def self.search(search)
+    if search.blank?
+      Post.all
+    else
+      Post.where("title LIKE ?", "%#{search}%")
+    end
+  end
 end

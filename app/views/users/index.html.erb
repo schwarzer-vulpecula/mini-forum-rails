@@ -1,33 +1,14 @@
 <h1>Users</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Rank</th>
-      <th>Posts</th>
-      <th>Comments</th>
-      <th>Replies</th>
-      <th>Joined</th>
-      <th colspan="7"></th>
-    </tr>
-  </thead>
+<%= form_tag(users_path, method: :get) do %>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= submit_tag ("Search") %>
+<% end %>
 
-  <tbody>
-    <% @users.reorder("display_name asc").order("username asc").each do |user| %>
-      <tr>
-        <td><%= link_to user.name, user %></td>
-        <td><%= user.rank_name_short %></td>
-        <td><%= user.post_count %></td>
-        <td><%= user.comment_count %></td>
-        <td><%= user.reply_count %></td>
-        <td><%= time_ago_in_words user.created_at %> ago</td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% if searching? -%>
+  <p>Searching for <b><%= params[:search] %></b> in Users | <%= link_to 'Clear Query', users_path %></p>
+<% end -%>
+
+<%= render 'table', users: @users.reorder("display_name asc").order("username asc") %>
 
 <div class=footer><p><%= link_to 'New User', new_user_path %></p></div>

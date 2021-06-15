@@ -5,7 +5,8 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.all
+    params[:search] = params[:search].squish unless params[:search].nil?
+    @posts = Post.search(params[:search])
   end
 
   # GET /posts/1

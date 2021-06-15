@@ -95,6 +95,26 @@ class User < ApplicationRecord
     string
   end
 
+  # Returns users with a username or display name matching the search query, depending if '@' was included in the front or not
+  def self.search(search)
+    if search.blank?
+      User.all
+    elsif search.first == '@'
+      User.where("username LIKE ?", "%#{search[1..-1]}%")
+    else
+      User.where("display_name LIKE ?", "%#{search}%")
+    end
+  end
+
+  # Returns posts by the given user with a title matching the search query
+  def search_post(search)
+    if search.blank?
+      self.posts
+    else
+      self.posts.where("title LIKE ?", "%#{search}%")
+    end
+  end
+
   private
     # Hashes the password, using salts, so that it is not stored in plain text
     # This is not the most secure implementation
