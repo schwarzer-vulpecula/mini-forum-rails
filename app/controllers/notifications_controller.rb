@@ -17,6 +17,16 @@ class NotificationsController < ApplicationController
     end
   end
 
+  # DELETE /notifications
+  def destroy_all
+    current_user.notifications.each do |notification|
+      notification.destroy
+    end
+    respond_to do |format|
+      format.html { redirect_to notifications_url, notice: "All notifications were successfully destroyed." }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_notification

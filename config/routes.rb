@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :notifications, only: [:index, :destroy]
   get 'notifications/:id/' => 'notifications#index'
+  delete 'notifications' => 'notifications#destroy_all'
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'

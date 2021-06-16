@@ -1,5 +1,5 @@
 <h1>Notifications</h1>
-
+<h3><%= link_to 'Destroy All', notifications_path, method: :delete, data: { confirm: 'Are you sure?' } %></h3>
 <table>
   <thead>
     <tr>
@@ -19,5 +19,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
