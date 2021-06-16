@@ -34,9 +34,9 @@ class SessionsController < ApplicationController
   def destroy
     if signed_in?
       sign_out
-      redirect_back fallback_location: :root, notice: "You have successfully signed out."
+      redirect_to :root, notice: "You have successfully signed out."
     else
-      redirect_back fallback_location: :root, alert: "You have already signed out."
+      redirect_to :root, alert: "You have already signed out."
     end
   end
 
