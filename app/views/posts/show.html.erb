@@ -1,7 +1,7 @@
 <%= render 'post', post: @post %>
 
 <%= render 'shared/show_footer', object: @post %>
-
+<br>
 <h2>Comments (<%= @post.comments.size %>)</h2>
 
 <% if signed_in? -%>
