@@ -116,6 +116,11 @@ class User < ApplicationRecord
     end
   end
 
+  # Returns the number of notifications that have not been read
+  def new_notifications
+    self.notifications.where(read: false).size
+  end
+
   private
     # Hashes the password, using salts, so that it is not stored in plain text
     # This is not the most secure implementation

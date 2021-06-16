@@ -2,6 +2,8 @@ class NotificationsController < ApplicationController
   before_action :set_notification, only: %i[ destroy ]
   before_action :require_permission, only: %i[ destroy ]
 
+  after_action :mark_all_as_read, only: %i[ index ]
+
   # GET /notifications
   def index
     @notifications = current_user.notifications
@@ -25,5 +27,9 @@ class NotificationsController < ApplicationController
       unless @notification.user == current_user
         unauthorized_redirect_to :root
       end
+    end
+
+    def mark_all_as_read
+      @notifications.update_all(read: true)
     end
 end
