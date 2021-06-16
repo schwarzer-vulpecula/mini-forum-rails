@@ -16,6 +16,7 @@
 <br>
 <% @post.comments.order("created_at desc").each do |comment| -%>
   <% next if comment.new_record? -%>
+  <p id=<%= comment.id %> ></p>
   <%= render 'comments/comment', comment: comment %>
   <div class=footer>
     <p>

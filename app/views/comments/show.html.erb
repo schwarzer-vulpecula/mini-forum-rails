@@ -24,6 +24,7 @@
 <br>
 <% @comment.replies.order("created_at desc").each do |reply| -%>
   <% next if reply.new_record? -%>
+  <p id=<%= reply.id %> ></p>
   <%= render 'replies/reply', reply: reply %>
   <div class=footer>
     <p>
