@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   resources :replies, except: [:index, :show, :new]
   get 'replies' => redirect("/posts")
 
+  resources :notifications, only: [:index, :destroy]
+  get 'notifications/:id/' => 'notifications#index'
+
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   get 'logout' => 'sessions#destroy'
