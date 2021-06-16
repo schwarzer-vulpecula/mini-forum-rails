@@ -18,6 +18,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         @comment.post.touch_recent
+        Notification.user_commented_on_post(current_user, @comment, @comment.post)
         format.html { redirect_to @comment.post, notice: "Comment was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }

@@ -13,6 +13,7 @@ class RepliesController < ApplicationController
     respond_to do |format|
       if @reply.save
         @reply.comment.post.touch_recent
+        Notification.user_replied_to_comment(current_user, @reply, @reply.comment)
         format.html { redirect_to @reply.comment, notice: "Reply was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }

@@ -1,0 +1,20 @@
+<% user = User.find_by(id: notification.subject) -%>
+<% reply = Reply.find_by(id: notification.verb) -%>
+<% comment = Comment.find_by(id: notification.object) -%>
+
+<b><%= 'New! ' unless notification.read %></b>
+<% if !user.nil? -%>
+  <%= user.rank_name %> <%= link_to user.name, user %>
+<% else -%>
+  A deleted user
+<% end -%>
+replied
+<% if !reply.nil? && !comment.nil? -%>
+  to your <%= link_to 'comment', comment_path(comment, anchor: reply.id) %>
+  in post titled <%= link_to comment.post.title, post_path(comment.post) %>
+<% elsif reply.nil? && !comment.nil? -%>
+  (Now Deleted) to your <%= link_to 'comment', comment_path(comment) %>
+  in post titled <%= link_to comment.post.title, post_path(comment.post) %>
+<% else %>
+  to your comment (Now Deleted)
+<% end -%>
