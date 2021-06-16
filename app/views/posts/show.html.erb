@@ -1,3 +1,5 @@
+<b><%= link_to "#{@post.mute ? 'Unmute' : 'Mute'} All Notifications About This Post", post_mute_path, method: :post, data: { confirm: 'Are you sure?' } if @post.user == current_user%></b>
+
 <%= render 'post', post: @post %>
 
 <%= render 'shared/show_footer', object: @post %>

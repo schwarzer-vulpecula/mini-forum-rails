@@ -2,12 +2,14 @@ Rails.application.routes.draw do
   root "home#index"
   get 'faq' => 'home#faq'
 
-  resources :posts
-
   resources :users
   get 'users/:id/posts' => 'users#posts', :as => :user_posts
 
+  resources :posts
+  post 'posts/:id/mute' => 'posts#mute', :as => :post_mute
+
   resources :comments, except: [:index, :new]
+  post 'comments/:id/mute' => 'comments#mute', :as => :comment_mute
   get 'comments' => redirect("/posts")
 
   resources :replies, except: [:index, :show, :new]

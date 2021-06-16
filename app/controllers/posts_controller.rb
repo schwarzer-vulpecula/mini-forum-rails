@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   skip_before_action :require_login, only: %i[ index show ]
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ show edit update destroy mute ]
   before_action :require_permission, only: %i[ edit update destroy ]
+  before_action :require_personal,  only: %i[ mute ]
 
   # GET /posts
   def index
@@ -55,6 +56,13 @@ class PostsController < ApplicationController
     end
   end
 
+  # POST /posts/1/mute
+  def mute
+    @post.mute = !@post.mute
+    @post.save(touch: false)
+    redirect_to @post, notice: "Notifications about this post was successfully #{@post.mute ? 'muted' : 'unmuted'}."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -68,6 +76,12 @@ class PostsController < ApplicationController
 
     def require_permission
       unless higher_rank?(@post.user)
+        unauthorized_redirect_to @post
+      end
+    end
+
+    def require_personal
+      unless current_user == @post.user
         unauthorized_redirect_to @post
       end
     end
