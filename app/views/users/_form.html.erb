@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :username, "Username (Cannot Be Changed)" %>
+    <%= form.label :username, "Username#{' (Cannot Be Changed)' if !allow_username_change?(user) || user.new_record?}" %>
     <%= form.text_field :username, disabled: !allow_username_change?(user)%>
   </div>
 
