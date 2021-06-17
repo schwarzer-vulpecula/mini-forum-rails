@@ -10,9 +10,16 @@ class User < ApplicationRecord
   has_many :replies, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
-  validates :username, format: { with: /\A[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\z/ }, length: { minimum: 3, maximum: 25}, uniqueness: true
+  validates :username, format: { with: /\A[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\z/, 
+    message: 'is invalid (may only contain alphanumeric characters, or "-" in between them, but not consecutively)' }
+  validates :username, length: { minimum: 3, maximum: 25}, uniqueness: true
+
   validates :password, confirmation: true, length: { minimum: 8, maximum: 24 }, if: -> { self.salt.nil? }
-  validates :display_name, length: { maximum: 30 }, format: { without: /@/ }
+
+  validates :display_name, format: { without: /@/, 
+    message: 'is invalid (may not contain the character "@")' }  
+  validates :display_name, length: { maximum: 30 }
+
   validates :about_me, length: { maximum: 150 }
 
   before_save :hash_password, if: -> { self.salt.nil? }
