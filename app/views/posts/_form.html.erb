@@ -21,6 +21,13 @@
     <%= form.text_area :content, size: "60x20" %>
   </div>
 
+  <% if current_user.staff? && post.new_record? %>
+    <div class="check_box">
+     <%= form.check_box :notify_users %>
+     <%= form.label :notify_users, "Notify Users" %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= form.submit %>
   </div>

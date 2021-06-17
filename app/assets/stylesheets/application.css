@@ -29,6 +29,14 @@ table {
   border-spacing: 10px;
 }
 
-.footer {
+div.footer {
   font-weight: bold;
+}
+
+div.check_box {
+  display: flex; 
+  justify-content:
+  flex-start;
+  align-items: center;
+  margin-bottom: 10px;
 }

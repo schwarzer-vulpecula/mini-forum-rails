@@ -96,6 +96,11 @@ class User < ApplicationRecord
     string
   end
 
+  # Returns true if the user is a staff member (Mod or Admin)
+  def staff?
+    self.rank == 'moderator' || self.rank == 'administrator'
+  end
+
   # Returns users with a username or display name matching the search query, depending if '@' was included in the front or not
   def self.search(search)
     if search.blank?

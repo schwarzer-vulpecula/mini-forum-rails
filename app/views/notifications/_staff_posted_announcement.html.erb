@@ -1,0 +1,14 @@
+<% staff = User.find_by(id: notification.subject) -%>
+<% post = Post.find_by(id: notification.object) -%>
+
+<% if !staff.nil? -%>
+  <%= staff.rank_name %> <%= link_to staff.name, staff %>
+<% else -%>
+  A deleted staff member
+<% end -%>
+posted an announcement
+<% if !post.nil? -%>
+  titled <%= link_to post.title, post_path(post) %>
+<% else %>
+  (Now Deleted)
+<% end -%>

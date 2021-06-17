@@ -25,11 +25,12 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    @post = current_user.posts.new(post_params)
+    @post = current_user.posts.new(post_params.except(:notify_users))
 
     respond_to do |format|
       if @post.save
         @post.touch_recent
+        Notification.staff_posted_announcement(current_user, @post) if current_user.staff? && params[:post][:notify_users] == '1'
         format.html { redirect_to @post, notice: "Post was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -71,7 +72,7 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      sanitize params.require(:post).permit(:title, :content)
+      sanitize params.require(:post).permit(:title, :content, :notify_users)
     end
 
     def require_permission

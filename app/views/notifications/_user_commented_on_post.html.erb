@@ -2,7 +2,6 @@
 <% comment = Comment.find_by(id: notification.verb) -%>
 <% post = Post.find_by(id: notification.object) -%>
 
-<b><%= 'New! ' unless notification.read %></b>
 <% if !user.nil? -%>
   <%= user.rank_name %> <%= link_to user.name, user %>
 <% else -%>
