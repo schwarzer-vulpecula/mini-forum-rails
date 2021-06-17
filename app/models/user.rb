@@ -22,6 +22,10 @@ class User < ApplicationRecord
 
   validates :about_me, length: { maximum: 150 }
 
+  attr_accessor :current_user
+  attr_accessor :current_password
+  validate :current_password_for_edit
+
   before_save :hash_password, if: -> { self.salt.nil? }
 
   # Authenticates the password included with the password of this user
@@ -140,5 +144,12 @@ class User < ApplicationRecord
       self.salt = SecureRandom.alphanumeric(16)
       self.password << self.salt
       self.password = Digest::SHA256.hexdigest self.password
+    end
+
+    def current_password_for_edit
+      # This validation is needed to ensure that the one editing (ie. The one behind the screen) is indeed the same person as the one signed in
+      if !self.new_record?
+        errors.add(:current_password, "is incorrect") unless current_user.authenticate(current_password)
+      end
     end
 end

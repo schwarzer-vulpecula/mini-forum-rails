@@ -16,15 +16,24 @@
     <%= form.text_field :username, disabled: !allow_username_change?(user)%>
   </div>
 
-  <div class="field">
-    <%= form.label :password, "Password" %>
-    <%= form.password_field :password, disabled: !allow_password_change?(user) %>
-  </div>
+  <% if !user.new_record? -%>
+    <div class="field">
+      <%= form.label :current_password, "Your Current Password (Required To Save Edit)" %>
+      <%= form.password_field :current_password %>
+    </div>
+  <% end -%>
 
-  <div class="field">
-    <%= form.label :password_confirmation, "Confirm Password" %>
-    <%= form.password_field :password_confirmation, disabled: !allow_password_change?(user) %>
-  </div>
+  <% if allow_password_change?(user) -%>
+    <div class="field">
+      <%= form.label :password, "Password" %>
+      <%= form.password_field :password %>
+    </div>
+
+    <div class="field">
+      <%= form.label :password_confirmation, "Confirm Password" %>
+      <%= form.password_field :password_confirmation %>
+    </div>
+  <% end -%>
 
   <div class="field">
     <%= form.label :display_name, "Display Name" %>

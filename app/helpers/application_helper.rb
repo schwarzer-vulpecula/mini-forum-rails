@@ -11,7 +11,7 @@ module ApplicationHelper
         end
         # Rejoin the lines into one
         params[k] = content_array.reject(&:blank?).join("\n")
-      elsif k == 'password' || k == 'password_confirmation'
+      elsif k == 'password' || k == 'password_confirmation' || k == 'current_password'
         # Do not sanitize password fields
         next
       else

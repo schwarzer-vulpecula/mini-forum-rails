@@ -52,9 +52,8 @@ module SessionsHelper
 
   # Returns true if current user should be allowed to destroy the given user
   def allow_user_destroy?(user)
-    return false unless signed_in?
-    # Only admins can destroy any user for now
-    current_user.rank == 'administrator'
+    # For now, nobody can destroy users as it is rather destructive
+    return false
   end
 
 end

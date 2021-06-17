@@ -37,18 +37,8 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    filtered_params = user_params
-    if ((filtered_params[:password].nil? || filtered_params[:password].length == 0) && (filtered_params[:password_confirmation].nil? || filtered_params[:password_confirmation].length == 0)) || !allow_password_change?(@user)
-      # Do not attempt to update the password; remove it from the hash
-      filtered_params.delete(:password)
-      filtered_params.delete(:password_confirmation)
-    else
-      # Request to clear the salt so that a new one will be given
-      filtered_params[:salt] = nil
-    end
-    filtered_params.delete(:username) unless allow_username_change?(@user)
     respond_to do |format|
-      if @user.update(filtered_params)
+      if @user.update(update_filter(user_params))
         format.html { redirect_to @user, notice: "User was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -87,7 +77,23 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      sanitize params.require(:user).permit(:username, :password, :password_confirmation, :display_name, :about_me, :avatar)
+      sanitize params.require(:user).permit(:username, :password, :password_confirmation, :display_name, :about_me, :avatar, :current_password)
+    end
+
+    # Complex filter for updating a user for security reasons
+    def update_filter(params)
+      filtered_params = params
+      if ((filtered_params[:password].nil? || filtered_params[:password].length == 0) && (filtered_params[:password_confirmation].nil? || filtered_params[:password_confirmation].length == 0)) || !allow_password_change?(@user)
+      # Do not attempt to update the password; remove it from the hash
+        filtered_params.delete(:password)
+        filtered_params.delete(:password_confirmation)
+      else
+        # Request to clear the salt so that a new one will be given
+        filtered_params[:salt] = nil
+      end
+      filtered_params.delete(:username) unless allow_username_change?(@user)
+      filtered_params[:current_user] = current_user # Save the current user for validation by the User model
+      filtered_params
     end
 
     def require_permission
