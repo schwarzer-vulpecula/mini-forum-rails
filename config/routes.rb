@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root "home#index"
-  get 'faq' => 'home#faq'
 
   resources :users
   get 'users/:id/posts' => 'users#posts', :as => :user_posts
