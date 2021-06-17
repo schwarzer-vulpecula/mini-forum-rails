@@ -21,8 +21,8 @@
         <td><%= user.reply_count %></td>
         <td><%= time_ago_in_words user.created_at %> ago</td>
         <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) if higher_rank?(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } if higher_rank?(user) %></td>
       </tr>
     <% end %>
   </tbody>

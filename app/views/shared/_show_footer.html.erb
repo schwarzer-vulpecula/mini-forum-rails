@@ -1,7 +1,9 @@
 <div class=footer>
   <p>
-    <%= link_to 'Edit', send("edit_#{object.model_name.name.underscore}_path", object) %> |
-    <%= link_to 'Destroy', object, method: :delete, data: { confirm: 'Are you sure?' } %> |
+    <% if higher_rank?(object) -%>
+      <%= link_to 'Edit', send("edit_#{object.model_name.name.underscore}_path", object) %> |
+      <%= link_to 'Destroy', object, method: :delete, data: { confirm: 'Are you sure?' } %> |
+    <% end -%>
     <%= link_to "Back to #{object.model_name.name.pluralize}", send("#{object.model_name.name.pluralize.underscore}_path") %>
   </p>
 </div>

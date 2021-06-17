@@ -26,10 +26,14 @@ module SessionsHelper
     !current_user.nil?
   end
 
-  # Returns true if current user is higher rank than the given user, or current user is the same user as the given user
-  def higher_rank?(user)
+  # Returns true if current user is higher rank than the object's owner, or current user is the same user as the object's owner
+  def higher_rank?(object)
     return false unless signed_in?
-    current_user == user || current_user.rank_before_type_cast > user.rank_before_type_cast
+    if object.is_a?(User)
+      current_user == object || current_user.rank_before_type_cast > object.rank_before_type_cast
+    else
+      current_user == object.user || current_user.rank_before_type_cast > object.user.rank_before_type_cast
+    end
   end
 
   # Returns true if current user is should be allowed to modify the username of the given user
