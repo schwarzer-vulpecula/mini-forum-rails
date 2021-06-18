@@ -83,6 +83,7 @@ class UsersController < ApplicationController
     # Complex filter for updating a user for security reasons
     def update_filter(params)
       filtered_params = params
+      # If either the password or confirmation is empty (Excluding whitespaces), or the current user is now allowed to change the password of this user...
       if ((filtered_params[:password].nil? || filtered_params[:password].length == 0) && (filtered_params[:password_confirmation].nil? || filtered_params[:password_confirmation].length == 0)) || !allow_password_change?(@user)
       # Do not attempt to update the password; remove it from the hash
         filtered_params.delete(:password)

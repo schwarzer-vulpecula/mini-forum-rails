@@ -150,6 +150,7 @@ class User < ApplicationRecord
       self.password = Digest::SHA256.hexdigest self.password
     end
 
+    # The ban message should be cleared if this user is not banned
     def clear_ban_message
       self.ban_message = nil
     end
