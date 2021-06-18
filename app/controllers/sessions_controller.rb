@@ -14,6 +14,11 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
+      if user.banned
+        flash.now[:alert] = "Sorry, this user is currently banned."
+        render 'new'
+        return
+      end
       # Log the user in and redirect
       sign_in user
       flash[:notice] = "You have successfully signed in."

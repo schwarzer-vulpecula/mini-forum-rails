@@ -104,6 +104,7 @@ class User < ApplicationRecord
     string = rank_name_short
     string << ' (You)' if self == current_user
     string << ' (OP)' if self == op
+    string << ' (Banned)' if self.banned
     string
   end
 

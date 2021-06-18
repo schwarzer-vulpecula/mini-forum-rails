@@ -11,14 +11,13 @@ module SessionsHelper
     session[:user_id] = nil
   end
 
-  # Saves the user stored in sessions in @current_user, and returns it
-  # If @current_user has something, simply return it
+  # Saves the user stored in sessions in @current_user
+  # Sign the user out immediately if the user is banned
+  # Then return it
   def current_user
-    if @current_user.nil?
-      @current_user = User.find_by(id: session[:user_id])
-    else
-      @current_user
-    end
+    @current_user = User.find_by(id: session[:user_id]) if @current_user.nil?
+    sign_out if !@current_user.nil? && @current_user.banned
+    @current_user
   end
 
   # Returns true if current session is storing a user
@@ -54,6 +53,13 @@ module SessionsHelper
   def allow_user_destroy?(user)
     # For now, nobody can destroy users as it is rather destructive
     return false
+  end
+
+  # Returns true if current user can ban the given user
+  def allow_user_ban?(user)
+    return false unless signed_in?
+    return false if current_user == user # Cannot self ban
+    current_user.staff? && current_user.rank_before_type_cast > user.rank_before_type_cast
   end
 
 end

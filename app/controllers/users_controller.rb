@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params.except(:banned))
 
     respond_to do |format|
       if @user.save
@@ -77,7 +77,7 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      sanitize params.require(:user).permit(:username, :password, :password_confirmation, :display_name, :about_me, :avatar, :current_password)
+      sanitize params.require(:user).permit(:username, :password, :password_confirmation, :display_name, :about_me, :avatar, :banned, :current_password)
     end
 
     # Complex filter for updating a user for security reasons
@@ -92,6 +92,7 @@ class UsersController < ApplicationController
         filtered_params[:salt] = nil
       end
       filtered_params.delete(:username) unless allow_username_change?(@user)
+      filtered_params.delete(:banned) unless allow_user_ban?(@user)
       filtered_params[:current_user] = current_user # Save the current user for validation by the User model
       filtered_params
     end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_16_123249) do
+ActiveRecord::Schema.define(version: 2021_06_18_080038) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_06_16_123249) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id", null: false
-    t.datetime "recent_activity", default: "2021-06-15 06:32:22"
+    t.datetime "recent_activity", default: "2021-06-18 07:10:10"
     t.boolean "mute", default: false, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2021_06_16_123249) do
     t.text "about_me"
     t.integer "avatar", default: 7
     t.integer "rank", default: 1
+    t.boolean "banned", default: false, null: false
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
