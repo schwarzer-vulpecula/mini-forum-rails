@@ -21,6 +21,10 @@
         <%= form.label "Banned?" %>
         <%= form.check_box :banned %>
       </div>
+      <div class="field">
+        <%= form.label :ban_message, "Reason For Banning (If Any)" %>
+        <%= form.text_field :ban_message %>
+      </div>
     <% end -%>
   <% end -%>
 

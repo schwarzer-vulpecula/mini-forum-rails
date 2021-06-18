@@ -77,7 +77,7 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      sanitize params.require(:user).permit(:username, :password, :password_confirmation, :display_name, :about_me, :avatar, :banned, :current_password)
+      sanitize params.require(:user).permit(:username, :password, :password_confirmation, :display_name, :about_me, :avatar, :current_password, :banned, :ban_message)
     end
 
     # Complex filter for updating a user for security reasons
@@ -93,6 +93,7 @@ class UsersController < ApplicationController
       end
       filtered_params.delete(:username) unless allow_username_change?(@user)
       filtered_params.delete(:banned) unless allow_user_ban?(@user)
+      filtered_params.delete(:ban_message) unless allow_user_ban?(@user)
       filtered_params[:current_user] = current_user # Save the current user for validation by the User model
       filtered_params
     end

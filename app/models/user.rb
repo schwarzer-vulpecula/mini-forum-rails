@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :replies, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
+  validates :ban_message, length: { maximum: 50 }
+
   validates :username, format: { with: /\A[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\z/, 
     message: 'is invalid (may only contain alphanumeric characters, or "-" in between them, but not consecutively)' }
   validates :username, length: { minimum: 3, maximum: 25}, uniqueness: true
@@ -27,6 +29,7 @@ class User < ApplicationRecord
   validate :current_password_for_edit
 
   before_save :hash_password, if: -> { self.salt.nil? }
+  before_save :clear_ban_message, if: -> { !self.banned }
 
   # Authenticates the password included with the password of this user
   def authenticate(password)
@@ -145,6 +148,10 @@ class User < ApplicationRecord
       self.salt = SecureRandom.alphanumeric(16)
       self.password << self.salt
       self.password = Digest::SHA256.hexdigest self.password
+    end
+
+    def clear_ban_message
+      self.ban_message = nil
     end
 
     def current_password_for_edit

@@ -15,7 +15,9 @@ class SessionsController < ApplicationController
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       if user.banned
-        flash.now[:alert] = "Sorry, this user is currently banned."
+        ban_message = "Sorry, this user is currently banned."
+        ban_message << " Reason: #{user.ban_message}" if !user.ban_message.blank?
+        flash.now[:alert] = ban_message
         render 'new'
         return
       end

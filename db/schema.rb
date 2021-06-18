@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_18_080038) do
+ActiveRecord::Schema.define(version: 2021_06_18_085123) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2021_06_18_080038) do
     t.integer "avatar", default: 7
     t.integer "rank", default: 1
     t.boolean "banned", default: false, null: false
+    t.string "ban_message"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
