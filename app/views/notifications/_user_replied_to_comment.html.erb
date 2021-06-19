@@ -10,10 +10,10 @@
 replied
 <% if !reply.nil? && !comment.nil? -%>
   to your <%= link_to 'comment', comment_path(comment, anchor: reply.id) %>
-  in post titled <%= link_to comment.post.title, post_path(comment.post) %>
+  in post titled <%= link_to comment.post.title, post_path(comment.post, anchor: comment.id) %>
 <% elsif reply.nil? && !comment.nil? -%>
   (Now Deleted) to your <%= link_to 'comment', comment_path(comment) %>
-  in post titled <%= link_to comment.post.title, post_path(comment.post) %>
+  in post titled <%= link_to comment.post.title, post_path(comment.post, anchor: comment.id) %>
 <% else %>
   to your comment (Now Deleted)
 <% end -%>

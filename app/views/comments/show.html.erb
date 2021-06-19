@@ -25,7 +25,7 @@
   <p>Sign in to reply to this comment. | <%= link_to 'Sign In', login_url %></p>
 <% end -%>
 <br>
-<% @comment.replies.order("created_at desc").each do |reply| -%>
+<% @comment.replies.order("created_at asc").each do |reply| -%>
   <% next if reply.new_record? -%>
   <p id=<%= reply.id %> ></p>
   <%= render 'replies/reply', reply: reply %>
