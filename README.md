@@ -11,6 +11,8 @@ Several key features include:
 * User authentication with password hashing
 * User moderation and user ranks
 * Website redirections that make sense
+* Input sanitation and proper formatting
+* Basic searching for users, posts, and user specific posts
 
 Several things that should be noted:
 
