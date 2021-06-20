@@ -15,6 +15,7 @@ title: Basic Information
 - [Comments and Replies](./comments-replies)
 - [Notifications](./notifications)
 - [Common Features](./common-features)
+- [Live Application](./live)
 - [Other Projects](https://schwarzer-vulpecula.github.io)
 
 # Basic Information
