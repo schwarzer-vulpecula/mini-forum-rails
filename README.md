@@ -24,13 +24,13 @@ Several things that should be noted:
 
 Version Information:
 
-* Ruby: 3.0.1
-* Rails: 6.1.3.2
+* Ruby: `3.0.1`
+* Rails: `6.1.3.2`
 * Other than that, I believe nothing else should be needed
 
 How to run:
 * Go into the directory
-* Run 'rails db:setup' in the terminal
-* Run 'rails server'
-* If you're getting a Webpacker::Manifest::MissingEntryError, run 'rails webpacker:install'
+* Run `rails db:setup` in the terminal
+* Run `rails server`
+* If you're getting a Webpacker::Manifest::MissingEntryError, run `rails webpacker:install`
 * Everything should be working afterwards
