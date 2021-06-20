@@ -92,13 +92,65 @@ Comment.create(content: "안녕하세요!", user_id: 1, post_id: 9, created_at: 
 time = time + 55.minutes
 Comment.create(content: "You guys are having wayyy too much fun -_-", user_id: 4, post_id: 9, created_at: time, updated_at: time)
 
+time = Time.now - 3.days
+Post.create(title: "Long 3 days old post of a poorly translated lyrics", content: "
+Oh, the road to a distant country\n
+White light illuminates the darkness\n
+Please tell me where you are\n
+Push the button forward to move it.\n
+(Oh, I cried a lot at night)\n
+Farewell to the past\n
+(Because I was there)\n
+The tomatoes don't come back.\n
+Execution lasts forever\n
+Great love and wisdom\n
+heart\n
+Get stronger and go to the moon\n
+death\n
+I took this opportunity\n
+We will be bright\n
+Go anywhere\n
+Light is eternal\n
+So I know my concerns.\n
+Under the stars\n
+Why does it hurt so much?\n
+Look, wait a minute.\n
+(Oh, I cried a lot at night)\n
+never look back\n
+(Because I was there)\n
+I'm not afraid to move on\n
+Let's wash it.\n
+love\n
+Heartbeat\n
+Without thinking, we run in a city of peace.\n
+Health needs\n
+Don't miss the time\n
+We will be bright\n
+Go anywhere\n
+Light is eternal\n
+Let's dance!\n
+straight away\n
+Let's go to heaven\n
+Believe in everything and look to the future\n
+I love you with all my heart\n
+heart\n
+Get stronger, look forward to it, and move forward.\n
+today as well\n
+I lost my happiness, my dreams\n
+This is the story you believe in and is clearly written.\n
+Go anywhere\n
+Light is eternal\n
+Go anywhere\n
+Light is eternal\n
+", user_id: 6, created_at: time, updated_at: time, recent_activity: time)
+
 time = Time.now - 12.hours
 User.create(username: 'aqua-regia', password: 'password9', display_name: 'Vulpes', avatar: 'vulpes-schrencki', about_me: "Humans have made us suffer for far too long.", banned: true, ban_message: "You tried to nuke the forum.", created_at: time, updated_at: time + 6.hours + 20.minutes)
 Post.create(title: "Post from 12 hours ago, with lots of comments", content: "In 2 hours time, I will be nuking this forum, starting from the comments section, unless someone comments \"Justice for the foxes!\".", user_id: 9, created_at: time, updated_at: time, recent_activity: time + 2.hours + 20.minutes)
 time = time + 2.hours
-Comment.create(content: "Your silence is answer enough.", user_id: 9, post_id: 10, created_at: time, updated_at: time)
+Comment.create(content: "Your silence is answer enough.", user_id: 9, post_id: 11, created_at: time, updated_at: time)
 for i in 1..20 do
-  Comment.create(content: "Spam comment #{i}", user_id: 9, post_id: 10, created_at: time + i.minutes, updated_at: time + i.minutes)
+  Comment.create(content: "Spam comment #{i}", user_id: 9, post_id: 11, created_at: time + i.minutes, updated_at: time + i.minutes)
 end
 
 time = Time.now - 6.hours
@@ -107,34 +159,34 @@ Comment.create(content: "🕒", user_id: 2, post_id: 6, created_at: time + 1.min
 Comment.create(content: "Congratulations.", user_id: 2, post_id: 8, created_at: time + 2.minutes, updated_at: time + 2.minutes)
 Comment.create(content: "שלום", user_id: 2, post_id: 9, created_at: time + 5.minutes, updated_at: time + 5.minutes)
 time = time + 30.minutes
-Comment.create(content: "You're late.", user_id: 7, post_id: 11, created_at: time, updated_at: time)
-Notification.create(user_id: 2, event: :user_commented_on_post, subject: 7, verb: 46, object: 11, created_at: time, updated_at: time)
+Comment.create(content: "You're late.", user_id: 7, post_id: 12, created_at: time, updated_at: time)
+Notification.create(user_id: 2, event: :user_commented_on_post, subject: 7, verb: 46, object: 12, created_at: time, updated_at: time)
 time = time + 15.minutes
 Reply.create(content: "Better late than never, I suppose.\nThank you.", user_id: 4, comment_id: 44, created_at: time, updated_at: time)
 Notification.create(user_id: 2, event: :user_replied_to_comment, subject: 4, verb: 15, object: 44, created_at: time, updated_at: time)
 time = Time.now - 3.hours
-Comment.create(content: "Where have you been? I missed you.", user_id: 1, post_id: 11, created_at: time, updated_at: time)
-Notification.create(user_id: 2, event: :user_commented_on_post, subject: 1, verb: 47, object: 11, created_at: time, updated_at: time)
+Comment.create(content: "Where have you been? I missed you.", user_id: 1, post_id: 12, created_at: time, updated_at: time)
+Notification.create(user_id: 2, event: :user_commented_on_post, subject: 1, verb: 47, object: 12, created_at: time, updated_at: time)
 
 time = Time.now - 15.minutes
 Post.create(title: "This is a very recent announcement.", content: "The end is here. I was too late.", user_id: 7, created_at: time, updated_at: time, recent_activity: Time.now - 1.minutes)
 User.all.each do |user|
   next if user == User.find(7)
-  user.notifications.create(event: :staff_posted_announcement, subject: 7, object: 12, created_at: time, updated_at: time)
+  user.notifications.create(event: :staff_posted_announcement, subject: 7, object: 13, created_at: time, updated_at: time)
 end
 time = time + 1.minutes
-Comment.create(content: "Ooooh, this looks super important!", user_id: 3, post_id: 12, created_at: time, updated_at: time)
-Notification.create(user_id: 7, event: :user_commented_on_post, subject: 3, verb: 48, object: 12, created_at: time, updated_at: time)
+Comment.create(content: "Ooooh, this looks super important!", user_id: 3, post_id: 13, created_at: time, updated_at: time)
+Notification.create(user_id: 7, event: :user_commented_on_post, subject: 3, verb: 48, object: 13, created_at: time, updated_at: time)
 time = time + 2.minutes
-Comment.create(content: "What's going on? A fight?", user_id: 5, post_id: 12, created_at: time, updated_at: time)
-Notification.create(user_id: 7, event: :user_commented_on_post, subject: 5, verb: 49, object: 12, created_at: time, updated_at: time)
+Comment.create(content: "What's going on? A fight?", user_id: 5, post_id: 13, created_at: time, updated_at: time)
+Notification.create(user_id: 7, event: :user_commented_on_post, subject: 5, verb: 49, object: 13, created_at: time, updated_at: time)
 time = time + 1.minutes
-Comment.create(content: "❓", user_id: 6, post_id: 12, created_at: time, updated_at: time)
-Notification.create(user_id: 7, event: :user_commented_on_post, subject: 6, verb: 50, object: 12, created_at: time, updated_at: time)
+Comment.create(content: "❓", user_id: 6, post_id: 13, created_at: time, updated_at: time)
+Notification.create(user_id: 7, event: :user_commented_on_post, subject: 6, verb: 50, object: 13, created_at: time, updated_at: time)
 time = time + 2.minutes
-Comment.create(content: "This is going to be interesting.", user_id: 8, post_id: 12, created_at: time, updated_at: time)
-Notification.create(user_id: 7, event: :user_commented_on_post, subject: 8, verb: 51, object: 12, created_at: time, updated_at: time)
+Comment.create(content: "This is going to be interesting.", user_id: 8, post_id: 13, created_at: time, updated_at: time)
+Notification.create(user_id: 7, event: :user_commented_on_post, subject: 8, verb: 51, object: 13, created_at: time, updated_at: time)
 time = Time.now - 1.minutes
-Comment.create(content: "Goodbye, everyone. It's been fun writing all of this.", user_id: 1, post_id: 12, created_at: time, updated_at: time)
-Notification.create(user_id: 7, event: :user_commented_on_post, subject: 1, verb: 52, object: 12, created_at: time, updated_at: time)
+Comment.create(content: "Goodbye, everyone. It's been fun writing all of this.", user_id: 1, post_id: 13, created_at: time, updated_at: time)
+Notification.create(user_id: 7, event: :user_commented_on_post, subject: 1, verb: 52, object: 13, created_at: time, updated_at: time)
 
