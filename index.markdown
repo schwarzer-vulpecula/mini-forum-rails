@@ -2,6 +2,8 @@
 
 layout: default
 
+title: Basic Information
+
 ---
 
 ## Table of Contents
