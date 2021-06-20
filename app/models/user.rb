@@ -67,7 +67,7 @@ class User < ApplicationRecord
 
   # Returns the url that should display the avatar
   def avatar_url
-    'avatars/' + self.avatar
+    'avatars/' + self.avatar + '.png'
   end
 
   # Returns the number of posts this user has made
