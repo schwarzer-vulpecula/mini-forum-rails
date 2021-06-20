@@ -21,9 +21,9 @@
 title: mini-forum-rails
 email: schwarzer.vulpecula@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  A forum where people can create threads and post in them.
+  Written in Ruby using Rails as a framework.
+  Uses sqlite3. 
 baseurl: "/mini-forum-rails" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 
