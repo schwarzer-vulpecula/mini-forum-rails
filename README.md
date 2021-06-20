@@ -4,6 +4,8 @@ This repository contains code of a forum where users can create posts. This is w
 
 For more information, visit https://schwarzer-vulpecula.github.io/mini-forum-rails/
 
+To see my other projects, visit https://schwarzer-vulpecula.github.io
+
 Several key features include:
 
 * Comments and replies
