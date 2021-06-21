@@ -9,6 +9,7 @@ title: Basic Information
 ## Table of Contents
 - [Basic Information](./)
 - [Static Pages](./static-pages)
+- [Routing](./routing)
 - [Users](./users)
 - [Sessions](./sessions)
 - [Posts](./posts)

@@ -2,7 +2,7 @@
 
 layout: default
 
-title: Basic Information
+title: Static Pages
 
 ---
 
@@ -36,8 +36,8 @@ class HomeController < ApplicationController
 end
 ```
 
-```ruby
-# home/index.html.erb
+```html
+<!-- home/index.html.erb -->
 <h1>Welcome to Mini Forum!</h1>
 
 <p>Welcome to my humble website, written in Ruby on Rails 6.1.3.2.
