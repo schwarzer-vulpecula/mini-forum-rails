@@ -77,7 +77,7 @@ end
 
 Many web applications allow users to leave the change password fields empty if they do not want to change their password. Unfortunately, due to how Rails work, this is not a very straightforward thing to do. Leaving it empty will cause existing validations for the password to fail, because Rails thinks the user is trying to make their password empty (And empty passwords are bad!). This is where the the nil salt value becomes important.
 
-In the `UserController`, a special filter is run through each time update is called. The filter will check for when the password fields are empty, and if it is, it will specifically tell Rails to not attempt to update the password. If the password fields are not empty, it means the user is trying to change their password, so we also add an additional request for a new salt since there has been a change. 
+In the `UserController`, a special filter is run through each time update is called. The filter will check for when the password fields are empty, and if it is, it will specifically tell Rails to not attempt to update the password. If the password fields are not empty, it means the user is trying to change their password, so an additional request for a new salt needs to be added since the password is being changed.
 
 ```ruby
 class UsersController < ApplicationController
