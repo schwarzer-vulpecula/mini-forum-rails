@@ -23,10 +23,10 @@ title: Static Pages
 
 In truth, the static pages in **mini-forum-rails** is not actually static. For a better User Experience, it is usually recommended to keep a similar layout between pages. Most layouts are dynamic as it typically changes based on login information. In Rails, this means the static page should not be part of the asset pipeline, but should instead be part of the view.
 
-Since it is part of the view, there has to be a controller for static pages, the `HomeController` class. Technically, the content of the static page is the model, and the controller's job is to take information from the model, render it as defined by the view, and pass it back to the browser, but this not the way it was done in **mini-forum-rails**. The `HomeController` essentially does nothing while the view has all the content.
+Since it is part of the view, there has to be a controller for static pages, which is the `HomeController` class in this case. Technically, the content of the static page is the model, and the controller's job is to take information from the model, render it as defined by the view, and pass it back to the browser, but this not the way it was done in **mini-forum-rails**. The `HomeController` essentially does nothing while the view has all the content.
 
 ```ruby
-# home_controller.rb
+# app/controllers/home_controller.rb
 class HomeController < ApplicationController
   skip_before_action :require_login
 
@@ -37,7 +37,7 @@ end
 ```
 
 ```html
-<!-- home/index.html.erb -->
+<!-- app/views/home/index.html.erb -->
 <h1>Welcome to Mini Forum!</h1>
 
 <p>Welcome to my humble website, written in Ruby on Rails 6.1.3.2.
