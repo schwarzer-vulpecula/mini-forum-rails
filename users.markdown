@@ -111,7 +111,7 @@ Below is a GIF showcasing this functionality.
 
 Often, when editing your profile, you are required to include your current password to save your changes. This is an additional step needed for security. I have also implemented this in **mini-forum-rails**. This is a very important feature because mods and admins in **mini-forum-rails** are allowed to change other users, and requiring this is an additional layer of security.
 
-We need to be able to pass the current password for authentication through the same form used in updating the user. However, this field is not part of the User model, and should not be saved to the database as it is only used for this authentication step. This is known in Rails as a virtual attribute. A custom validation is also needed to authenticate this.
+We need to be able to pass the current password for authentication through the same form used in updating the user. However, this field is not part of the model, and should not be saved to the database as it is only used for this authentication step. This is known in Rails as a virtual attribute. A custom validation is also needed to authenticate this.
 
 ```ruby
 class User < ApplicationRecord
