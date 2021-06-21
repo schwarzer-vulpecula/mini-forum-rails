@@ -75,7 +75,7 @@ end
 
 ## Changing Passwords
 
-Many web applications allow users to leave the password change fields empty, if a user does not want to change their password. Unfortunately, due to how Rails work, this is not very straightforward thing to do. Leaving it empty will cause existing validations for the password to fail, because Rails believe the user is trying to make their password empty (And empty passwords are bad!). This is where the the nil salt value becomes important.
+Many web applications allow users to leave the password change fields empty, if a user does not want to change their password. Unfortunately, due to how Rails work, this is not a very straightforward thing to do. Leaving it empty will cause existing validations for the password to fail, because Rails thinks the user is trying to make their password empty (And empty passwords are bad!). This is where the the nil salt value becomes important.
 
 In the `UserController`, a special filter is run through each time update is called. The filter will check for when the password fields are empty, and if it is, it will specifically tell rails to not attempt to update the password. If the password fields are not empty, it means the user is trying to change their password, so we also add an additional request for a new salt since there has been a change. 
 
@@ -109,9 +109,9 @@ Below is a GIF showcasing this functionality.
 
 ## Current Password For Confirmation
 
-Often, when editing your profile, you are required to include your current password to save your changes. This is an additional step typically needed for security. I have also implemented this in **mini-forum-rails**. This is a very important feature because mods and admins in **mini-forum-rails** are allowed to change other users, and requiring this is an additional layer of security.
+Often, when editing your profile, you are required to include your current password to save your changes. This is an additional step needed for security. I have also implemented this in **mini-forum-rails**. This is a very important feature because mods and admins in **mini-forum-rails** are allowed to change other users, and requiring this is an additional layer of security.
 
-We need to be able to pass the current password for authentication through the same form used in updating the user. However, this field is not part of the User model, and should not be saved to the database as it is only used for authentication. This is known in Rails as a virtual attribute. A custom validation is also needed to authenticate this.
+We need to be able to pass the current password for authentication through the same form used in updating the user. However, this field is not part of the User model, and should not be saved to the database as it is only used for this authentication step. This is known in Rails as a virtual attribute. A custom validation is also needed to authenticate this.
 
 ```ruby
 class User < ApplicationRecord
