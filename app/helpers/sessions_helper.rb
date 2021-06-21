@@ -35,7 +35,7 @@ module SessionsHelper
     end
   end
 
-  # Returns true if current user is should be allowed to modify the username of the given user
+  # Returns true if current user should be allowed to modify the username of the given user
   def allow_username_change?(user)
     return true if user.new_record?
     return false unless signed_in?
