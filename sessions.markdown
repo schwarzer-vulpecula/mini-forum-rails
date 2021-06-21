@@ -150,7 +150,7 @@ Another important thing I have done here is the session will only store `user_id
 
 ## Redirection After Signing In
 
-After signing in, often it makes sense to redirect the user to the last visited page. Returning to the home page after every sign in is a bad user experience. While this task may seem straightforward, the truth is that the HTTP referer is set to the sign in page after you have sent the sign in request. This means simply redirecting to the previous page will actually bring you back to the sign in page, rather than the previous page. In **mini-forum-rails**, this is not the case.
+After signing in, often it makes sense to redirect the user to the last visited page. Returning to the home page after every sign in is a bad User Experience. While this task may seem straightforward, the truth is that the HTTP referer is set to the sign in page after you have sent the sign in request. This means simply redirecting to the previous page will actually bring you back to the sign in page, rather than the previous page. In **mini-forum-rails**, this is not the case.
 
 When visiting the sign in page, the controller will immediately save the referer into the session. The user is then redirected to what was saved in the session after they have successfully signed in. However, the referer will not be saved if it refers to the sign in page. This is to prevent the previously mentioned case from happening should the user fail the initial attempt but succeeded in the next attempt.
 
