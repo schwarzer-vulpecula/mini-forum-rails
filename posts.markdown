@@ -65,7 +65,7 @@ class CommentsController < ApplicationController
 end
 ```
 
-It should be noted that there is no other way to modify the `recent_activity` timestamp, and that `touch_recent` is the only function that can modify it. This enforces the way the timestamp works.
+It should be noted that there is no other way to modify the `recent_activity` timestamp, and that `touch_recent` is the only method that can modify it. This enforces the way the timestamp works.
 
 ## Input For Notifying Users
 
