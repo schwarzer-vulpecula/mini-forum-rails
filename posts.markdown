@@ -29,7 +29,7 @@ A post is one of the more simpler model in **mini-forum-rails**, only being slig
 
 A timestamp that shows when a user has recently created a new comment or a new reply inside a post is a common feature. Other users can then see how active a post is, even if it was posted a long time ago.
 
-Since posts can be edited at any time, the `updated_at` timestamp is already used to keep track of when a post's content was last modified. So a new timestamp should be added to posts. The modification of this timestamp should also not change the `updated_at` timestamp, and Rails must be specifically told to not do so as the change is a default behaviour that happens every time an attribute was modified.
+Since posts can be edited at any time, the `updated_at` timestamp is already used to keep track of when a post's content was last modified. So a new timestamp should be added to posts. The modification of this timestamp should also not change the `updated_at` timestamp, and Rails must be specifically told to not do so as the change is a default behavior that happens every time an attribute was modified.
 
 ```ruby
 # app/models/posts.rb

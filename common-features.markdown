@@ -12,8 +12,6 @@ title: Common Features
 - [Routing](./routing)
 - [Users](./users)
 - [Sessions](./sessions)
-  - [Privileges](#privileges)
-  - [Redirection After Signing In](#redirection-after-signing-in)
 - [Posts](./posts)
 - [Comments and Replies](./comments-replies)
 - [Notifications](./notifications)
@@ -26,11 +24,11 @@ title: Common Features
 
 # Common Features
 
-These are some features that I would like to go over in **mini-forum-rails** which do not fit under any of the categories.
+These are some features that I would like to go over which do not fit under any of the categories.
 
 ## Toggling
 
-When an model's attribute is boolean, it sometimes make sense to have a toggle functionality to change them. Rather than going through forms, a simple button click is often much more simpler and effective. In **mini-forum-rails**, muting a post or comment is easy.
+When a model's attribute is boolean, it sometimes make sense to have a toggling button to change them. Rather than going through forms, a simple button click is often much more simpler and effective. In **mini-forum-rails**, muting a post or comment is easy.
 
 ```ruby
 # app/controllers/posts_controller.rb
@@ -112,3 +110,51 @@ Below is a GIF showcasing the above functionalities.
 ![Searching Users](./searching-users.gif)
 
 ## Input Sanitation
+
+Most user inputs are sanitized using a common helper method. There are things that need to be considered when sanitizing user inputs. Password fields should never be sanitized, and content fields should try to not remove new lines as that is not the default behavior and **mini-forum-rails** allows new lines for content fields.
+
+```ruby
+# app/helpers/application_helper.rb
+module ApplicationHelper
+
+  # Sanitizes parameters according to various rules
+  def sanitize(params)
+    params.each_key do |k|
+      if k == 'content'
+        # Squish each individual lines instead
+        content_array = params[k].split("\n")
+        for i in 0...content_array.length
+          content_array[i] = content_array[i].squish
+        end
+        # Rejoin the lines into one
+        params[k] = content_array.reject(&:blank?).join("\n")
+      elsif k == 'password' || k == 'password_confirmation' || k == 'current_password'
+        # Do not sanitize password fields
+        next
+      else
+        # Squish it
+        params[k] = params[k].squish
+      end
+    end
+    params
+  end
+
+end
+```
+
+```ruby
+# app/controllers/posts_controller.rb
+class PostsController < ApplicationController
+  private
+    # Only allow a list of trusted parameters through.
+    def post_params
+      sanitize params.require(:post).permit(:title, :content, :notify_users)
+    end
+end
+```
+
+Sanitation cleans inputs so that oddly placed whitespaces are removed. This is also important for the User Experience as it ensures that all content by other users look clean. Another thing to note is that the parameters are directly modified. This means that should a form be rejected, when Rails highlights the erroneous fields, the fields are already sanitized.
+
+Below is a GIF showcasing the above functionalities.
+
+![Sanitation](./sanitation.gif)
