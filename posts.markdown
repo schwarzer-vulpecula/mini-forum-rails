@@ -69,7 +69,7 @@ It should be noted that there is no other way to modify the `recent_activity` ti
 
 ## Input For Notifying Users
 
-Moderators and Administrators have the ability to notify everyone with their posts. Passing the input to the server is not a difficult task, but how to handle it is not as straightforward. Since this parameter should not be part of the `Post` model, it should not be saved to the database.
+Moderators and Administrators have the ability to notify everyone when a post by them is created. Passing this parameter to the server is not a difficult task, but how to handle it is not as straightforward. Since this parameter should not be part of the `Post` model, it should not be saved to the database.
 
 Initially, it made sense to make this parameter virtual inside the `Post` model. We can then create the appropriate notifications if the parameter is set to true. However, this is a strange way of doing things as `Post` models should not be able to create `Notification` models. They should not even reference each other in the first place!
 
