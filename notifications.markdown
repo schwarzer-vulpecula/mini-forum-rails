@@ -62,7 +62,7 @@ end
 
 The `event` attribute can then be used to determine the actual content. View partials can be easily associated with this value.
 
-```html
+```erb
 <!-- app/views/notifications/index.html.erb -->
 <h1>Notifications</h1>
 <h3><%= link_to 'Destroy All', notifications_path, method: :delete, data: { confirm: 'Are you sure?' } %></h3>
@@ -89,7 +89,7 @@ The `event` attribute can then be used to determine the actual content. View par
 
 `render notification.event` will resolve to rendering a partial named after the `event` attribute. For example, if the notification is about a user commenting on a post, `_user_commented_on_post.html.erb` will be rendered. Each view partial can put links based on the `subject`, `verb`, and `object` attributes. `subject` is typically the user who caused the event, `verb` is typically a link to a what the `subject` has done, which is the comment in this case, and `object` is typically the receiver of the action, which is the post in this case.
 
-```html
+```erb
 <!-- app/views/notifications/_user_commented_on_post.html.erb -->
 <% user = User.find_by(id: notification.subject) -%>
 <% comment = Comment.find_by(id: notification.verb) -%>
