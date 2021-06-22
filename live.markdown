@@ -29,4 +29,4 @@ Please keep in mind that other people may be able to see what you have done.
 
 Be warned that there is no moderation.
 
-Although the database is reset everyday, there may things (or lack of things) from before the next scheduled reset.
+Although the database is reset everyday, there may be things (or lack of things) from before the next scheduled reset.
