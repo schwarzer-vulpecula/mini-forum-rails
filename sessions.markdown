@@ -146,7 +146,7 @@ end
 
 Although it is strange to `return true` for `higher_rank?` when the user is the current user, I find it easier to do it this way because most things that use this validation often require the user to be able to do it on themselves as well.
 
-Another important thing I have done here is the session will only store `user_id`. The `current_user` function will query the database with it and then store it as a variable. It will try to not query the database every time a reference to the current user is needed. This will reduce the workload of the database.
+Another important thing I have done here is that the session will only store `user_id`. The `current_user` function will query the database with it and then store it as a variable. It will try to not query the database every time a reference to the current user is needed. This will reduce the workload of the database.
 
 ## Redirection After Signing In
 
