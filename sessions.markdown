@@ -73,7 +73,7 @@ class PostsController < ApplicationController
 end
 ```
 
-Methods like `current_user`, `higher_rank?`, and `signed_in?` are part of the `SessionsHelper` module. This module also contains very specific validations, such as allowing the current session to be able to change a specific user's passwords or not, which may require case by case checks.
+Methods like `current_user`, `higher_rank?`, and `signed_in?` are part of the `SessionsHelper` module. This module also contains very specific validations, such as when to allow the current session to be able to change a specific user's passwords or not, which may require case by case checks.
 
 ```ruby
 # app/helpers/sessions_helper.rb
