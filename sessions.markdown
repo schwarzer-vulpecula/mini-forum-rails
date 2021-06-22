@@ -73,7 +73,7 @@ class PostsController < ApplicationController
 end
 ```
 
-Functions like `current_user`, `higher_rank?`, and `signed_in?` are part of the `SessionsHelper` module. This module also contains very specific validations, such as allowing the current session to be able to change a specific user's passwords or not, which may require case by case checks.
+Methods like `current_user`, `higher_rank?`, and `signed_in?` are part of the `SessionsHelper` module. This module also contains very specific validations, such as allowing the current session to be able to change a specific user's passwords or not, which may require case by case checks.
 
 ```ruby
 # app/helpers/sessions_helper.rb
@@ -146,7 +146,7 @@ end
 
 Although it is strange to `return true` for `higher_rank?` when the user is the current user, I find it easier to do it this way because most things that use this validation often require the user to be able to do it on themselves as well.
 
-Another important thing I have done here is that the session will only store `user_id`. The `current_user` function will query the database with it and then store it as a variable. It will try to not query the database every time a reference to the current user is needed. This will reduce the workload of the database.
+Another important thing I have done here is that the session will only store `user_id`. The `current_user` method will query the database with it and then store it as a variable. It will try to not query the database every time a reference to the current user is needed. This will reduce the workload of the database.
 
 ## Redirection After Signing In
 
