@@ -21,6 +21,8 @@ title: Comments and Replies
 
 # Comments and Replies
 
+A post can have many comments, and a comment can have many replies. This is the structure of **mini-forum-rails**.
+
 When thinking about comments and replies, the existence of replies is dubious. A reply in the context of **mini-forum-rails** is simply a comment of a comment. Although this can be easily done using polymorphic associations, the design of **mini-forum-rails** was against this. I decided that comments should not be infinitely recursive (That is, you cannot continually create comments of a comment). The easiest way to enforce this constraint is to create a separate model to represent the comment of a comment. Since the `Reply` model does not have any other associations, it will always be the lowest level in the hierachy.
 
 Functionally, they are very similar to comments, except for the fact that they cannot be muted, since you cannot be notified about a reply to a reply anyway because it is not possible to do so, in the context of **mini-forum-rails**.
