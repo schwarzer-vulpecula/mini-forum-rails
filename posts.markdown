@@ -54,7 +54,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
     respond_to do |format|
       if @comment.save
-        @comment.post.touch_recent
+        @comment.post.touch_recent # touch_recent called
         Notification.user_commented_on_post(current_user, @comment, @comment.post)
         format.html { redirect_to @comment.post, notice: "Comment was successfully created." }
       else

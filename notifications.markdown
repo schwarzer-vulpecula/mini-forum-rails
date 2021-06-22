@@ -114,3 +114,51 @@ This means every event can have its own view partial which will render the conte
 ![Various Notifications](./various-notifications.png)
 
 ## Creation
+
+The creation of notifications is done through class methods. This is so that the hard work will be given to the model, rather than the controller. The controller simply passes the relevant entities into the method. I find this to be the easier way of doing things, compared to having the controller build the notification in the action. It is also much more easier to enforce the structure of the notification based on the event using class methods.
+
+```ruby
+# app/models/notification.rb
+class Notification < ApplicationRecord
+  def self.user_commented_on_post(subject, verb, object)
+    owner = object.user
+    return if subject == owner || object.mute
+    owner.notifications.create(event: :user_commented_on_post, subject: subject.id, verb: verb.id, object: object.id)
+  end
+
+  def self.user_replied_to_comment(subject, verb, object)
+    owner = object.user
+    return if subject == owner || object.mute
+    owner.notifications.create(event: :user_replied_to_comment, subject: subject.id, verb: verb.id, object: object.id)
+  end
+
+  def self.staff_posted_announcement(subject, object)
+    User.all.each do |user|
+      next if user == subject
+      user.notifications.create(event: :staff_posted_announcement, subject: subject.id, object: object.id)
+    end
+  end
+end
+```
+
+For example, when a post receives a comment, a notification should be created for the owner of the post, assuming it is not muted. The appropriate class method will be called in the `create` action of the `CommentsController`.
+
+```ruby
+# app/controllers/comments_controller.rb
+class CommentsController < ApplicationController
+  def create
+    @comment = current_user.comments.new(comment_params)
+    respond_to do |format|
+      if @comment.save
+        @comment.post.touch_recent
+        Notification.user_commented_on_post(current_user, @comment, @comment.post) # Class method called
+        format.html { redirect_to @comment.post, notice: "Comment was successfully created." }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
+  end
+end
+```
+
+Notice how the controller does not need to check for whether or not the post is muted. That is handled by the class method. If in the future some more conditions are added, the controllers will not need to worry about them.
