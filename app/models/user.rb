@@ -127,7 +127,7 @@ class User < ApplicationRecord
     end
   end
 
-  # Returns posts by the given user with a title matching the search query
+  # Returns posts by this user with a title matching the search query
   def search_post(search)
     if search.blank?
       self.posts
