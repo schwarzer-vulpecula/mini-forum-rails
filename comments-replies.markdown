@@ -46,4 +46,4 @@ class Comment < ApplicationRecord
 end
 ```
 
-While this does mean a lot of the code between replies and comments is repeated, it also does mean replies can be treated differently, since their controllers can also contain different codes. While not impossible to do so with a comment polymorphically associated with other comments, it would be much more complex. This is important in the context of notifications, when the content of the notification must be different depending on the subject. The notification will display *replied to* rather than *commented on* to be more informative for the end user.
+While this does mean a lot of the code between replies and comments will be repeated, it also does mean replies can be treated differently, since their controllers can also contain different codes. While not impossible to do so with a comment polymorphically associated with other comments, it would be much more complex. This is important in the context of notifications, when the content of the notification must be different depending on the subject. The notification will display *replied to* rather than *commented on* to be more informative for the end user.
