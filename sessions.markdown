@@ -27,7 +27,7 @@ While the `User` model holds data relating to users, sessions is what gives peop
 
 ## Privileges
 
-The session should always restrict the end user in some way or form in the context of **mini-forum-rails**. For example, creating a new post requires you to be signed in, since the application does not allow anonymous posting. Also, users should not be able to edit other users or their posts, unless they have special privileges, which is based on their rank (ie. Moderator or Administrator). While the `User` model keeps track of the rank, the session is the one enforcing the rules. The `SessionsHelper` module contains functions that are used when responding to a request.
+The session should always restrict the end user in some way or form in the context of **mini-forum-rails**. For example, creating a new post requires you to be signed in, since the application does not allow anonymous posting. Also, users should not be able to edit other users or their posts, unless they have special privileges, which is based on their rank (ie. Moderator or Administrator). While the `User` model keeps track of the rank, the session is the one enforcing the rules. The `SessionsHelper` module contains methods that are used when responding to a request.
 
 Since there are many pages that require the user to be signed in, it makes sense to put the validation in the `ApplicationController`, which will mean all controllers will require the user to be signed in by default.
 
@@ -73,7 +73,7 @@ class PostsController < ApplicationController
 end
 ```
 
-Methods like `current_user`, `higher_rank?`, and `signed_in?` are part of the `SessionsHelper` module. This module also contains very specific validations, such as when to allow the current session to be able to change a specific user's passwords or not, which may require case by case checks.
+Methods like `current_user`, `higher_rank?`, and `signed_in?` are part of the `SessionsHelper` module. This module also contains very specific validations, such as when to allow the current session to be able to change a specific user's password or not, which may require case by case checks.
 
 ```ruby
 # app/helpers/sessions_helper.rb
