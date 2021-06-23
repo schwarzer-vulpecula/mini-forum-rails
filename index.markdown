@@ -40,6 +40,7 @@ Several things that should be noted:
 * There is no forget password feature because of this
 * User ranks must be set by editing the entry in the database, you can use the rails console for this
 * This is not production ready and is not meant to be used as is.
+* The database used is the default SQLite3, however, the live version uses PostgreSQL as Heroku does not support SQLite3.
 
 Version Information:
 
